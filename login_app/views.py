@@ -40,7 +40,7 @@ def register(request):
     if len(errors) > 0:
         # for key, value in errors.items():
         #     messages.error(request,value)
-        return redirect('/')
+        return redirect('/login')
     else:
         request.session.flush()
         # confirm_password = request.POST['confirm_password']
@@ -49,7 +49,7 @@ def register(request):
         request.session['user_id'] = user.id
         # if 'errors' in request.session.keys():
         #     del request.session['errors']
-        return redirect('/success')
+        return redirect('/user_experience')
 
 def login(request):
     request.session.flush()
@@ -60,7 +60,7 @@ def login(request):
         request.session['login_password'] = request.POST['login_password']
         for key,value in errors.items():
             messages.error(request,value)
-        return redirect('/')
+        return redirect('/login')
     else:
         # request.session.flush()
         email = request.POST['login_email']
@@ -69,13 +69,13 @@ def login(request):
         request.session['user_id'] = user.id
         # if 'errors' in request.session.keys():
         #     del request.session['errors']
-        return redirect('/success')
+        return redirect('/user_experience')
     
 
 
 def logout(request):
     # request.session.flush()
-    return redirect('/')
+    return redirect('/login')
 
 def base(request):
     context = {

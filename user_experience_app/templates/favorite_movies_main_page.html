@@ -1,5 +1,45 @@
 {% extends "ue_base.html" %}
 
 {% block page_content %}
-<p class="display-1">IT WORKED!!!.</p>
+<p class="text-danger m-3">[ use ajax to fill in the table ]</p>
+
+<table class="table table-primary table-striped table-hovers">
+    <thead>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col">Movie Title</th>
+            <th scope="col">Year</th>
+            <th scope="col">Added by</th>
+            <th scope="col"># likes </th>
+            <th scope="col">like/un-like </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">1</th>
+            <td>Mars Attacks</td>
+            <td>1999</td>
+            <td>Matthew Summers</td>
+            <td>101</td>
+            <td><a href="#">like</a>/<a href="#">un-like</a></td>
+        </tr>
+        <tr>
+            <th scope="row">2</th>
+            <td>Edward Scissorhands</td>
+            <td>1999</td>
+            <td>Joseph Hooker</td>
+            <td>1001</td>
+            <td><a href="#">like</a>/<a href="#">un-like</a></td>
+        </tr>
+        <tr>
+            <th scope="row">3</th>
+            <td>The Princess Bride</td>
+            <td>1988</td>
+            <td>Michael DuWors</td>
+            <td>101</td>
+            <td><a href="#">like</a>/<a href="#">un-like</a></td>
+        </tr>
+    </tbody>
+</table>
+
 {% endblock page_content %}

@@ -31,14 +31,14 @@ def user_info_page(request):
     }
     return render(request,'user_info_page.html',context)
     
-def discussion_partial(request):
+def comment(request):
     context = {
-        "name_of_page" : "discussion_partial",
+        "name_of_page" : "comment_partial (use ajax)",
     }
-    return render(request,'discussion_partial.html',context)
+    return render(request,'comment_partial.html',context)
     
-def discussion_partial_edit(request):
+def response(request):
     context = {
-        "name_of_page" : "discussion_partial_edit",
+        "name_of_page" : "response_partial (use ajax)",
     }
-    return render(request,'discussion_partial_edit.html',context)
+    return render(request,'response_partial.html',context)

@@ -1,5 +1,62 @@
 {% extends "ue_base.html" %}
 
 {% block page_content %}
-<p class="display-1">IT WORKED!!!.</p>
+
+
+<div id="right-panel">
+    <h3>Movie Title</h3>
+    <h4>1990</h4>
+    <img src="#" alt="poster">
+    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam nihil vero, facilis eos sit animi delectus nesciunt, libero dolores necessitatibus tempora ipsum itaque maiores qui eligendi laudantium nisi iusto ducimus aliquam! In aliquam, laudantium amet voluptates odio sint adipisci blanditiis perspiciatis eos, minima labore. Adipisci officiis atque id veniam. Blanditiis.</p>
+    <div id="stream-locs"></div>
+</div>
+
+        <div id="wrapper3">
+            <form action="/post_message" method="post">
+                {% csrf_token %}
+                <label for="message">Say something about this film:</label>
+                <textarea name="message" class="enter_message" placeholder="Write message here" rows="8"></textarea>
+                <div class="submit">
+                    <input type="submit" class="submit_message" value="Post message">
+                </div>
+            </form>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam praesentium rerum, expedita laborum soluta, sapiente, iste veritatis exercitationem at numquam animi? Ducimus odio veniam minima beatae nobis cupiditate praesentium odit dolor laboriosam enim. Animi, autem labore quis aut quos et, in voluptatem provident cupiditate inventore sapiente exercitationem voluptatum, fuga quas deleniti laborum rem beatae tenetur maxime tempore. Mollitia tempora earum porro et maiores consequuntur voluptatibus sit eaque error! Voluptatem, magni.</p>
+
+            {% for message in messages %}
+                <h5>{{message.user.first_name}} {{message.user.last_name}} - {{ message.date|date:"F jS, Y" }}</h5>
+                <p class="inline_block"> {{message.body}}</p>
+                {% if message.deletable %} 
+                    <a href="/delete_message/{{message.id}}"> - (delete)</a>
+                {% endif %}
+                {% for comment in message.message_comments.all %}
+                    <h5 class="comment"> {{comment.user.first_name}} {{comment.user.last_name}} {{comment.date|date:"M jS, Y" }} </h5>
+                    <p class="comment inline_block"> {{comment.body}}</p>
+                    {% if comment.deletable %} 
+                        <a href="/delete_comment/{{comment.id}}"> - (delete)</a>
+                    {% endif %}
+                {% endfor %}
+                <form action="/post_comment/{{message.id}}" method="post">
+                    {% csrf_token %}
+                    <label class="shorter comment" for="comment">Continue the conversation:</label>
+                    <textarea name="comment" class="shorter comment" placeholder="Write message here" rows="3"></textarea>
+                    <div class="submit">
+                        <input type="submit" class="comment submit_comment" value="Post comment">
+                    </div>
+                </form>
+            {% endfor %}
+            <p> <i>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur quis delectus inventore vitae minima a fuga magnam necessitatibus quasi atque dolorem recusandae sit provident illo totam in iure voluptas, sed reprehenderit adipisci exercitationem ut eaque? Officia neque iusto eveniet quia!</i> </p>
+            <form action="/post_comment/{{message.id}}" method="post">
+                {% csrf_token %}
+                <label class="shorter comment" for="comment">Continue the conversation:</label>
+                <textarea name="comment" class="shorter comment" placeholder="Write your response" rows="3"></textarea>
+                <div class="submit">
+                    <input type="submit" class="comment submit_comment" value="Post comment">
+                </div>
+            </form>
+
+
+        </div>
+
+
+
 {% endblock page_content %}

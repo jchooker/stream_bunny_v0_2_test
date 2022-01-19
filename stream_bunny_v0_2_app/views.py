@@ -43,3 +43,10 @@ def get_movie(request, movie_id):
     print('*'*300)
     print(movie_detail.get("plot"))
     return redirect('/')
+
+# def like(request, movie_id):
+#     user_id = request.session['user_id']
+#     movie = Movie.objects.get(id=movie_id)
+#     movie.user_favorites = user_id
+#     movie.save()
+#     return redirect('/')

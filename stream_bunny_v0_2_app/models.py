@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 from django.core.validators import MaxValueValidator, MinValueValidator
+from login_app.models import User
 
 def current_year():
     return date.today().year
@@ -21,6 +22,8 @@ class Movie(models.Model):
     )
     director = models.CharField(max_length=100, null=True)
     genres = models.CharField(max_length=100, null=True)
+    # user_favorites = models.ManyToManyField(User, related_name="favorites")
+
 
     def serialize(self):
         return {

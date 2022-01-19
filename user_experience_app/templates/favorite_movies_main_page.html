@@ -39,6 +39,22 @@
             <td>101</td>
             <td><a href="#">like</a>/<a href="#">un-like</a></td>
         </tr>
+
+    {% comment %} once we get the like feature down,
+    the below is how we can use it in this template {% endcomment %}
+    {% for movie in movies %}
+        <tr>
+            <td>{{movie.title}}</td>
+            <td>{{movie.year}}</td>
+            <td>{{movie.user_favorites.count}}</td>
+        {% if movie not in user.favorites.all %}
+            <a href="like/{{movie.id}}">Like!</a>
+        {% elif movie in user.favorites.all %}
+            <a href="unlike/{{movie.id}}">Unlike!</a>
+        {% endif %}
+        </tr>
+    {% endfor %}
+    
     </tbody>
 </table>
 

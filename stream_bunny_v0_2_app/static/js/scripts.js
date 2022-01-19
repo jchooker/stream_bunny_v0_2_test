@@ -21,6 +21,7 @@ search_input.addEventListener('keyup', e=>{
                             <div class="col-10">
                                 <h5>${movie.title}</h5>
                                 <p class="text-muted">${movie.year}</p>
+                                <a href="like/${movie.id}">Like</a>
                             </div>
                         </div>
                     </a>`

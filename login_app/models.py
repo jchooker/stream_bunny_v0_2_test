@@ -51,4 +51,10 @@ class User(models.Model):
     birthday = models.DateField()
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     objects = Manager()
+    #favorites
+
+    def full_name(self):
+        return "{} {}".format(self.first_name, self.last_name)

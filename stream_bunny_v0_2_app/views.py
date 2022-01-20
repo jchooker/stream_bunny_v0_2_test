@@ -16,6 +16,7 @@ def search(request, query):
     print("More changes made")
     ia = IMDb()
     curr_movies = ia.search_movie_advanced(query, adult=False)
+    print(curr_movies)
     if curr_movies:
         movie_array = []
         for movie in curr_movies:
@@ -40,6 +41,19 @@ def search(request, query):
 def get_movie(request, movie_id):
     ia = IMDb()
     movie_detail = ia.get_movie(movie_id)
-    print('*'*300)
-    print(movie_detail.get("plot"))
-    return redirect('/')
+    if movie_detail.get('director'):
+        movie_dict = {
+            'title': movie_detail.get('title'),
+            'year' : movie_detail.get('year'),
+            'poster_link': movie_detail.get('cover url'),
+            'director' : movie_detail.get('director')[0]['name'],
+            'plot': movie_detail.get('plot'),
+        }
+    else:
+        movie_dict = {
+            'title': movie_detail.get('title'),
+            'year' : movie_detail.get('year'),
+            'poster_link': movie_detail.get('cover url'),
+            'plot': movie_detail.get('plot'),
+        }
+    return HttpResponse(json.dumps(movie_dict), content_type="application/json")

@@ -111,6 +111,16 @@ body {
     text-align: center;
 }
 
+#movie-details {
+    width: 95%;
+}
+
+#stream-locs {
+    display: inline-flex;
+}
+
+.stream-logo {
+    width: 70px;
 
 
 

@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from imdb import IMDb
 from django.template.defaulttags import register
+
+from stream_bunny_v0_2_app.api import get_stream
 from .models import *
 
 @csrf_exempt
@@ -41,6 +43,8 @@ def search(request, query):
 def get_movie(request, movie_id):
     ia = IMDb()
     movie_detail = ia.get_movie(movie_id)
+    # print(movie_id)
+    streaming_on = get_stream(movie_id)
     if movie_detail.get('director'):
         movie_dict = {
             'title': movie_detail.get('title'),
@@ -48,6 +52,8 @@ def get_movie(request, movie_id):
             'poster_link': movie_detail.get('cover url'),
             'director' : movie_detail.get('director')[0]['name'],
             'plot': movie_detail.get('plot'),
+            'streaming_on':streaming_on[0]['stream'],
+            'go_to_stream':streaming_on[0]['stream_link']
         }
     else:
         movie_dict = {
@@ -55,5 +61,8 @@ def get_movie(request, movie_id):
             'year' : movie_detail.get('year'),
             'poster_link': movie_detail.get('cover url'),
             'plot': movie_detail.get('plot'),
+            'streaming_on':streaming_on[0]['stream'],
+            'go_to_stream':streaming_on[0]['stream_link']
         }
     return HttpResponse(json.dumps(movie_dict), content_type="application/json")
+# C:\Users\jcole\OneDrive\Desktop\c dojo\python_stack\django\final_proj\stream_bunny_v0_2\stream_bunny_v0_2_app\images\hulu.png

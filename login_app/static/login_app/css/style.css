@@ -9,12 +9,29 @@ body {
     background-image: linear-gradient(lightblue,lightyellow,lightblue);
 }
 #wrapper1 {
-    margin:20px auto;
-    width:1500px;
-    min-height:700px;
+    /* margin:20px auto; */
+    /* width:1500px; */
+    /* min-height:700px;
     background-color: ivory;
     border:brown  5px ridge;
-    padding:30px 50px 30px 50px;
+    padding:30px 50px 30px 50px; */
+    width: 100%;
+    min-height: 1000px;
+    background-color: #1e90ff;
+}
+#carousel {
+    width:20%;
+    height:190px;
+    margin:0px auto;
+}
+#logo{
+    width: 60px;
+    background-color: aliceblue;
+    margin-right:10px;
+}
+#has_logo {
+    display:flex;
+    align-items: center;
 }
 #wrapper2 {
     display:flex;
@@ -49,7 +66,7 @@ input[type="submit"] {
     text-align: center;
     width:fit-content;
     font-size:x-large;
-    box-shadow: 5px 5px 5px darkgrey;
+    box-shadow: 5px 5px 5px darkblue;
 }
 input:focus {
     background-color: rgb(193, 241, 193);

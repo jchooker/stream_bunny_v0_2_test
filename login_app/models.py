@@ -2,6 +2,7 @@ from django.db import models
 import re
 import bcrypt
 from datetime import datetime,timedelta
+# from user_experience_app.models import FavoriteMovie
 
 class Manager(models.Manager):
     def registerValidator(self,postData):
@@ -54,7 +55,6 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = Manager()
-    #favorites
 
     def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)

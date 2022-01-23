@@ -10,7 +10,17 @@ def favorite_movies_main_page(request):
         "user" : user,
     }
     return render(request,'favorite_movies_main_page.html',context)
+
+def members_list_page(request):
+    user = User.objects.get(id=request.session['user_id'])
+
+    context = {
+        "name_of_page" : "members_list_page",
+        "user" : user,
+    }
+    return render(request,'members_list_page.html',context)
     
+
 def movie_info_discussion_page(request):
     user = User.objects.get(id=request.session['user_id'])
 
@@ -65,4 +75,18 @@ def response(request):
     }
     return render(request,'response_partial.html',context)
 
-# def like(request,)
+def ue_like(request,movie_id):
+    if request.method == 'POST':
+        user = request.session['user']
+        movie = Movie.objects.get(id=movie_id)
+
+        # CHECK TO SEE IF THIS IS RIGHT:
+        User.liked_by.delete(movie) ## ???????????
+
+
+        # Note.objects.create(body=request.POST['new_note'])    
+        context = {
+            # 'notes' : Note.objects.all(),
+        }
+        return render(request,"favorite_movies_main_partial.html",context)
+    return redirect('/')

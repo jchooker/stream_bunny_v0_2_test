@@ -8,10 +8,25 @@ from django.template.defaulttags import register
 
 from stream_bunny_v0_2_app.api import get_stream
 from .models import *
+from user_experience_app.models import *
+from login_app.models import *
 
 @csrf_exempt
 def movie_search(request):
-    return render(request, 'movie_search.html')
+    if 'user_id' in request.session.keys():
+        user = User.objects.get(id=request.session['user_id'])
+
+        context = {
+            "name_of_page" : "Stream Bunny Search Page",
+            "user" : user,
+            "search_page" : True,
+        }
+        return render(request, 'movie_search.html',context)
+    context = {
+        "name_of_page" : "Stream Bunny Search Page",
+        "search_page" : True,
+    }
+    return render(request, 'movie_search.html',context)
 
 def search(request, query):
     ia = IMDb()
@@ -63,4 +78,33 @@ def get_movie(request, movie_id):
             'go_to_stream':streaming_on[0]['stream_link']
         }
     return HttpResponse(json.dumps(movie_dict), content_type="application/json")
+
+
+######### I can't finish the following code without help from Drew. At least the url paths are working.
+
+def like(request, movie_id):
+    if 'user_id' in request.session.keys():
+        # try:
+        #     movie = Movie.objects.get(imdb_id = movie_id)
+        # except:
+        #     Movie.objects.create(
+        #         imdb_id = movie_id,
+        #         imdb_rating = "xxxx",
+        #         poster_link = "xxxx",
+        #         poster_low = "xxxx",
+        #         plot = "xxxx",
+        #         title = "xxxx",
+        #         year = "xxxx",
+        #         director = "xxxx",
+        #         genres = "xxxx",
+        #         liked_by = request.session['user_id'],
+        #     )
+        #     return redirect("/")  #this is temporary
+        return redirect("/user_experience/user_favorite_movies_page") #this is temporary
+
+    else:
+        return redirect("/login")
+
+
+
 # C:\Users\jcole\OneDrive\Desktop\c dojo\python_stack\django\final_proj\stream_bunny_v0_2\stream_bunny_v0_2_app\images\hulu.png

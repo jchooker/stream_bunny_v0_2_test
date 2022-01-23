@@ -18,39 +18,55 @@ body {
 }
 
 #wrapper1 {
-    outline : 4px solid #fad711;
-    width: 90%;
-    min-height: 500px;
-    max-height: 500px;
-    margin: 20px auto;
-    border: 1px solid black;
-    border-radius: 8px;
+    /* outline : 4px solid #fad711; */
+    width: 100%;
+    min-height: 1000px;
+    /* max-height: 500px;  */
+    /* margin: 20px auto; */
+    /* border: 1px solid black; */
+    /* border-radius: 8px; */
     background-color: #1e90ff;
 }
 
+#carousel {
+    width:20%;
+    height:190px;
+    margin:0px auto;
+}
+#logo{
+    width: 60px;
+    background-color: aliceblue;
+    margin-right:10px;
+}
+#has_logo {
+    display:flex;
+    align-items: center;
+}
 #top-part1 {
     /* outline: 4px solid red; */
-    position:relative;
-    display: flex;
-    justify-content: start;
-    align-items: center;
+    /* position:relative; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
     /* notneed flex? */
-    height: 170px;
+    height:80px;
+    padding: 20px 100px;
 }
-    #logo{
+    /* #logo{
         position: absolute; top: 20px;left: 10px;
         width: 100px;
-    }
+    } */
     .logo-title{
-        position: absolute; top: 50px;left: 110px;
+        /* position: absolute; top: 50px;left: 110px; */
         margin-left: 10px;
-        color: #000b35;
+        /* color: #000b35; */
         font-size: 50px;
         font-weight: bolder;
     }
     .logo-motto{
-        position: absolute; top: 120px;left: 130px;
-        margin-left: 20px;
+        /* position: absolute; top: 120px;left: 130px; */
+        color: white;
+        font-size:x-large;
     }
 #middle-part1 {
     width: 100%;

@@ -1,0 +1,51 @@
+        {% extends "ue_base.html" %}
+
+        {% block page_content %}
+        <div id="wrapper2">
+                <div class="column" class="vertical_align_top">
+                    <h3 class="purple"><u><i>{{user.full_name}}</i></u></h3>
+                    <div id="book_information1" class="vertical_align_top">
+                        <p><b>First Name: {{user.first_name}}</b></p>
+                        <p><b>Last Name: {{user.last_name}} </b></p>
+                        <p><b>Email: {{user.email}}</b></p>
+                        <p><b>Birthday: {{user.birthday}}</b></p>
+                        <p><b>Joined on: {{user.created_at}}</b></p>
+                    </div>
+                    <div id="book_information2">
+                        <p>{{user.first_name}}</p>
+                        <p>{{user.last_name}}</p>
+                        <p>{{user.email}}</p>
+                        <p>{{user.birthday|date:"M j, Y"}}</p>
+                        <p>{{user.created_at|date:"M j, Y"}}</p>
+                    </div>
+                    <div id="page_3_links">
+                        {% comment %} <a href="/success">Go back</a> {% endcomment %}
+                        <a href="/user_experience">Go back</a>
+                        <a href="/user_experience/user_info_page_edit">Edit user information</a>
+                    </div>
+                </div>
+                <div class="column text_align_left" >
+                    <h3 class="purple"> <u><i>Your Favorite Movies</i></u></h3>
+                    {% for quote in quotes %}
+                        <h4>"{{quote.quote}}"</h4>
+                        <div class="shift_right">
+                            <p><i> - {{quote.author}}</i></p>
+                            <p>Added by <a href="/all_quotes_by_user/{{quote.added_by.id}}">{{quote.added_by.first_name}} {{quote.added_by.last_name}}</a></p>
+                            {% if quote.liked_by.count == 1 %}
+                                <p>{{quote.liked_by.count}} like</p>
+                            {% else %}
+                                <p>{{quote.liked_by.count}} likes</p>
+                            {% endif %}
+                            {% if user in quote.liked_by.all %}
+                                <a href="/like_quote/{{quote.id}}/5">unlike</a>
+                            {% else %}
+                                <a href="/like_quote/{{quote.id}}/5">like</a>
+                            {% endif %}
+                            {% if quote.added_by == user %}
+                            <a href="/delete_quote/{{quote.id}}/5">delete</a>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div> {% comment %} END OF wrapper2 {% endcomment %}
+            {% endblock page_content %}

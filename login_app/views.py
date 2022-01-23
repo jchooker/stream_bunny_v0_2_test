@@ -3,6 +3,7 @@ from .models import *
 import bcrypt
 from django.contrib import messages
 from datetime import datetime
+from login_app.models import *
 
 
 def login_page(request):
@@ -22,7 +23,7 @@ def success(request):
         return redirect('/')
 
 def register(request):
-    request.session.flush()
+    # request.session.flush()
     errors = User.objects.registerValidator(request.POST)
     request.session['errors'] = errors
     first_name = request.POST['first_name']
@@ -74,13 +75,8 @@ def login(request):
 
 
 def logout(request):
-    # request.session.flush()
+    request.session.flush()
     return redirect('/login')
-
-def base(request):
-    context = {
-    }
-    return render(request,"base.html",context)
 
 def child(request):
     context = {

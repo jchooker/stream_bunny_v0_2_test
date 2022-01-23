@@ -9,4 +9,5 @@ urlpatterns = [
     path('user_info_page',views.user_info_page), 
     path('comment',views.comment),
     path('response',views.response), 
+    path('like/<int:movie_id>',views.ue_like), 
 ]

@@ -29,8 +29,6 @@ def movie_search(request):
     return render(request, 'movie_search.html',context)
 
 def search(request, query):
-    print("Change made")
-    print("More changes made")
     ia = IMDb()
     curr_movies = ia.search_movie_advanced(query, adult=False)
     print(curr_movies)

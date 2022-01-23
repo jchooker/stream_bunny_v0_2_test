@@ -10,7 +10,17 @@ def favorite_movies_main_page(request):
         "user" : user,
     }
     return render(request,'favorite_movies_main_page.html',context)
+
+def members_list_page(request):
+    user = User.objects.get(id=request.session['user_id'])
+
+    context = {
+        "name_of_page" : "members_list_page",
+        "user" : user,
+    }
+    return render(request,'members_list_page.html',context)
     
+
 def movie_info_discussion_page(request):
     user = User.objects.get(id=request.session['user_id'])
 

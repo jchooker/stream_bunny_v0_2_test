@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+{% block head %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stream Bunny</title>
+    <title>Stream Bunny!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    <!-- Optional JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>    {% load static %}
-    <link rel="stylesheet" href="{% static 'user_experience_app/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="{% static 'user_experience_app/js/script.js' %}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap');
+    </style>
 </head>
+{% endblock head %}
+
 <body>
     <div id="wrapper1">
+
+        {% comment %}
         
         <h1><b><u>[ {{name_of_page}} ] <span class="text-danger">(remove later)</span> </u></b></h1>
         <p>
             Links for this site <span class="text-danger">(remove later)</span>: 
             <a id="log_out" href="/login/logout">Log Out</a> | 
             <a href="/user_experience">Favorite Movies Main Page</a> | 
-            <a href="movie_info_discussion_page">movie_info_discussion_page</a> | 
-            <a href="user_favorite_movies_page">user_favorite_movies_page</a> | 
-            <a href="user_info_page">user_info_page</a> | 
-            <a href="user_info_page_edit">user_info_edit_partial</a> | 
-            <a href="comment">comment_partial</a> | 
-            <a href="response">response_partial</a> |     
+            <a href="/user_experience/movie_info_discussion_page">movie_info_discussion_page</a> | 
+            <a href="/user_experience/user_favorite_movies_page">user_favorite_movies_page</a> | 
+            <a href="/user_experience/user_info_page">user_info_page</a> | 
+            <a href="/user_experience/user_info_page_edit">user_info_edit_partial</a> | 
+            <a href="/user_experience/comment">comment_partial</a> | 
+            <a href="/user_experience/response">response_partial</a> |     
         </p>
 
-        {% comment %}
         {% endcomment %}
 
         {% block carousel %}
@@ -64,9 +71,11 @@
             
         <nav class="navbar navbar-expand-sm navbar-dark bg-dark justify-content-between">
             <div class="container-fluid">
-                <a class="navbar-brand" href="javascript:void(0)">
+                <a id="has_logo" class="navbar-brand" href="javascript:void(0)">
                     <img src="{% static 'user_experience_app/images/logo.png' %}" alt="My image" id="logo">
-                    STREAM BUNNY</a>
+                    <span class="alegreya logo-title">Stream Bunny</span>
+                    {# <span class="alegreya"> Your Second-To-Last Stop</span> #}
+                </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -76,13 +85,13 @@
                             <a class="nav-link" href="/user_experience">Favorite Movies</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/user_experience">Members</a>
+                            <a class="nav-link" href="/user_experience/">Members</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Streambunny Search </a>
+                            <a class="nav-link" href="/">Stream Bunny Search </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="user_info_page">{{user.first_name}} {{user.last_name}}</a>
+                            <a class="nav-link" href="/user_experience/user_info_page">{{user.first_name}} {{user.last_name}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/login/logout">Log Out</a>

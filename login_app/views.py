@@ -75,7 +75,7 @@ def login(request):
 
 
 def logout(request):
-    # request.session.flush()
+    request.session.flush()
     return redirect('/login')
 
 def child(request):

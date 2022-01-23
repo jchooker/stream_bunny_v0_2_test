@@ -22,7 +22,7 @@ class Movie(models.Model):
     )
     director = models.CharField(max_length=100, null=True)
     genres = models.CharField(max_length=100, null=True)
-    # user_favorites = models.ManyToManyField(User, related_name="favorites")
+    liked_by = models.ManyToManyField(User, related_name="liked_by")
 
 
     def serialize(self):

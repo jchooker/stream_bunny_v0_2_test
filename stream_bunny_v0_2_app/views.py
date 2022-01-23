@@ -19,9 +19,14 @@ def movie_search(request):
         context = {
             "name_of_page" : "Stream Bunny Search Page",
             "user" : user,
+            "search_page" : True,
         }
         return render(request, 'movie_search.html',context)
-    return render(request, 'movie_search.html')
+    context = {
+        "name_of_page" : "Stream Bunny Search Page",
+        "search_page" : True,
+    }
+    return render(request, 'movie_search.html',context)
 
 def search(request, query):
     print("Change made")

@@ -8,7 +8,7 @@ from login_app.models import *
 
 def login_page(request):
     context = {
-
+        "login_page" : True,
     }
     return render(request,"login_page.html",context)
 

@@ -20,8 +20,8 @@
     <div id="wrapper1">
 
         {% comment %}
-        
-        <h1><b><u>[ {{name_of_page}} ] <span class="text-danger">(remove later)</span> </u></b></h1>
+
+        <h1><b><u>[ {{name_of_page}} ] <span class="text-danger">(remove later) </span></u></b></h1>
         <p>
             Links for this site <span class="text-danger">(remove later)</span>: 
             <a id="log_out" href="/login/logout">Log Out</a> | 
@@ -33,7 +33,6 @@
             <a href="/user_experience/comment">comment_partial</a> | 
             <a href="/user_experience/response">response_partial</a> |     
         </p>
-
         {% endcomment %}
 
         {% block carousel %}
@@ -84,26 +83,32 @@
 
                 <div class="collapse navbar-collapse w-100" id="mynavbar">
                     <ul class="navbar-nav me-auto w-100 justify-content-around">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user_experience">Favorite Movies</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user_experience/">Members</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Stream Bunny Search </a>
-                        </li>
-                        {% if user %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/user_experience/user_info_page">{{user.first_name}} {{user.last_name}}</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login/logout">Log Out</a>
-                        </li>
-                        {% else %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="/login">Log In</a>
-                        </li>                        
+                        {% if search_page != True %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Stream Bunny Search </a>
+                            </li>                        
+                        {% endif %}
+                        {% if request.session.user_id %}
+                            {% if name_of_page != "favorite_movies_main_page" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user_experience">Favorite Movies</a>
+                            </li>
+                            {% endif %}
+                            {% if name_of_page != "members_list_page" %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user_experience/members_list_page">Members</a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/user_experience/user_info_page">{{user.first_name}} {{user.last_name}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login/logout">Log Out</a>
+                            </li>
+                        {% elif login_page != True %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Log In</a>
+                            </li>                        
                         {% endif %}
                     </ul>
 

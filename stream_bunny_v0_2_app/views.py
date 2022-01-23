@@ -13,13 +13,15 @@ from login_app.models import *
 
 @csrf_exempt
 def movie_search(request):
-    user = User.objects.get(id=request.session['user_id'])
+    if 'user_id' in request.session.keys():
+        user = User.objects.get(id=request.session['user_id'])
 
-    context = {
-        "name_of_page" : "Stream Bunny Search Page",
-        "user" : user,
-    }
-    return render(request, 'movie_search.html',context)
+        context = {
+            "name_of_page" : "Stream Bunny Search Page",
+            "user" : user,
+        }
+        return render(request, 'movie_search.html',context)
+    return render(request, 'movie_search.html')
 
 def search(request, query):
     print("Change made")

@@ -1,5 +1,8 @@
+{% extends "ue_base.html"%}
+
 <!DOCTYPE html>
 <html lang="en">
+{% block head %}
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,9 +13,17 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'login_app/css/style.css' %}">
     <script src="{% static 'login_app/js/script.js' %}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap');
+    </style>
 </head>
+{% endblock head %}
 <body>
     <div id="wrapper1">
+        {% block carousel %}
+        {% endblock carousel %}
+
+        {% block page_content %} 
 
         {% comment %}
         <div id="errors">
@@ -66,6 +77,8 @@
                 </form>
             </div>            
         </div>
+
+        {% endblock page_content %} 
 
     </div>
 </body>

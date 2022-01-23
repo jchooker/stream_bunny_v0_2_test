@@ -76,9 +76,12 @@
                     <span class="alegreya logo-title">Stream Bunny</span>
                     {# <span class="alegreya"> Your Second-To-Last Stop</span> #}
                 </a>
+                {% comment %}
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+                {% endcomment %}
+
                 <div class="collapse navbar-collapse w-100" id="mynavbar">
                     <ul class="navbar-nav me-auto w-100 justify-content-around">
                         <li class="nav-item">
@@ -90,12 +93,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/">Stream Bunny Search </a>
                         </li>
+                        {% if user %}
                         <li class="nav-item">
                             <a class="nav-link" href="/user_experience/user_info_page">{{user.first_name}} {{user.last_name}}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/login/logout">Log Out</a>
                         </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login">Log In</a>
+                        </li>                        
+                        {% endif %}
                     </ul>
 
                     {% comment %}

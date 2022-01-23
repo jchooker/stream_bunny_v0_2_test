@@ -121,15 +121,7 @@ body {
 
 .stream-logo {
     width: 70px;
-
-
-
-
-
-
-
-
-
+}
 
 #results-box{
     outline : 3px solid #fad711;
@@ -177,4 +169,9 @@ body {
 
 a{
     color: black;
+}
+
+.stream-div {
+    width: 250px;
+    display: flex;
 }

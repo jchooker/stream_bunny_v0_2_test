@@ -44,8 +44,10 @@ search_input.addEventListener('keyup', e=>{
                                     <h5>${response.director}</h5>
                                     <p>${response.plot}</p>
                                     <h5>Streaming at: </h5>
+                                    <div class='stream-div'>
                                     <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png'></a>
-                                    `
+                                    </div>`
+
 
                                 } else {
                                     movie_details.innerHTML=''
@@ -53,8 +55,12 @@ search_input.addEventListener('keyup', e=>{
                                     <h3>${response.title}</h3>
                                     <h5>${response.year}</h5>
                                     <img src="${response.poster_link}" class="movie-img">
-                                    <p>${response.plot}</p>                                    
-                                    <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png'></a>`
+                                    <p>${response.plot}</p>
+                                    <h5>Streaming at: </h5>
+                                    <div class='stream-div'>
+                                    <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png'></a>
+                                    
+                                    </div>`                                   
                                 }
                                 console.log(response.streaming_on.stream_link, response.streaming_on.stream)
                                 movie_details.classList.remove('not-visible')

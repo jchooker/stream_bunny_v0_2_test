@@ -86,24 +86,35 @@ def get_movie(request, movie_id):
 
 def like(request, movie_id):
     if 'user_id' in request.session.keys():
-        # try:
-        #     movie = Movie.objects.get(imdb_id = movie_id)
-        # except:
-        #     Movie.objects.create(
-        #         imdb_id = movie_id,
-        #         imdb_rating = "xxxx",
-        #         poster_link = "xxxx",
-        #         poster_low = "xxxx",
-        #         plot = "xxxx",
-        #         title = "xxxx",
-        #         year = "xxxx",
-        #         director = "xxxx",
-        #         genres = "xxxx",
-        #         liked_by = request.session['user_id'],
-        #     )
-        #     return redirect("/")  #this is temporary
-        return redirect("/user_experience/user_favorite_movies_page") #this is temporary
+        user = User.objects.get(id=request.session['user_id'])
+        movie_list = Movie.objects.filter(imdb_id = movie_id)
+        if len(movie_list) > 0:
+            movie = movie_list[0]
+            if user not in movie.liked_by.all():
+                pass
+                # movie.liked_by = user
 
+        else:
+            ia = IMDb()
+            movie = ia.get_movie(movie_id)
+            this_movie = Movie.objects.create(
+                imdb_id = movie_id,
+                imdb_rating = movie['rating'],
+                poster_link = movie['cover url'],
+                # poster_low = "xxxx",
+                plot = movie['plot'],
+                title = movie['title'],
+                year = movie['year'],
+                director = movie['director'],
+                genres = movie['genres'],
+            )
+
+            # this_movie.liked_by.set(user)
+
+# TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use liked_by.set() instead.
+# TypeError: 'User' object is not iterable
+
+        return redirect("/")  #this is temporary
     else:
         return redirect("/login")
 

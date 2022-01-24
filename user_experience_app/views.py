@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 from login_app.models import User
+from stream_bunny_v0_2_app.models import Movie
 
 def favorite_movies_main_page(request):
     user = User.objects.get(id=request.session['user_id'])
@@ -8,6 +9,7 @@ def favorite_movies_main_page(request):
     context = {
         "name_of_page" : "favorite_movies_main_page",
         "user" : user,
+        "movies" : Movie.objects.all()
     }
     return render(request,'favorite_movies_main_page.html',context)
 

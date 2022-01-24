@@ -33,6 +33,16 @@ body {
     display:flex;
     align-items: center;
 }
+.logo-title{
+    /* position: absolute; top: 50px;left: 110px; */
+    margin-left: 10px;
+    /* color: #000b35; */
+    font-size: 50px;
+    font-weight: bolder;
+}
+.alegreya{
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
 #wrapper2 {
     display:flex;
 }

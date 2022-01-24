@@ -43,12 +43,13 @@
 
     {% for movie in movies %}
         <tr>
+            <td>{{movie.id}}</td>
             <td>{{movie.title}}</td>
             <td>{{movie.year}}</td>
-            <td>{{movie.user_favorites.count}}</td>
-        {% if movie not in user.favorites.all %}     
+            <td>{{movie.liked_by.count}}</td>
+        {% if movie not in user.liked_by.all %}     
             <a class=".like" href="/user_experience/like/{{movie.id}}">Like!</a>
-        {% elif movie in user.favorites.all %}
+        {% else %}
             <a class=".like" href="/user_experience/like/{{movie.id}}">Unlike!</a> {# like and inlike can use the same function #}
         {% endif %}
         </tr>

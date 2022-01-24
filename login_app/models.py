@@ -2,7 +2,6 @@ from django.db import models
 import re
 import bcrypt
 from datetime import datetime,timedelta
-# from user_experience_app.models import FavoriteMovie
 
 class Manager(models.Manager):
     def registerValidator(self,postData):

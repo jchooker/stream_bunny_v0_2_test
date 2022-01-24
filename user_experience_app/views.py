@@ -23,12 +23,13 @@ def members_list_page(request):
     return render(request,'members_list_page.html',context)
     
 
-def movie_info_discussion_page(request):
+def movie_info_discussion_page(request,movie_id):
     user = User.objects.get(id=request.session['user_id'])
-
+    movie = Movie.objects.get(id=movie_id)
     context = {
         "name_of_page" : "movie_info_discussion_page",
         "user" : user,
+        "movie" : movie,
     }
     return render(request,'movie_info_discussion_page.html',context)
     

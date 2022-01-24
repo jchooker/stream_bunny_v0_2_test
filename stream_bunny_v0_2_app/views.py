@@ -105,6 +105,8 @@ def like(request, movie_id):
                 year = movie['year'],
                 director = movie['director'],
                 genres = movie['genres'],
+
+                ## need to add 'added_by' both here and in models.py
             )
 
             # this_movie.liked_by.set(user)

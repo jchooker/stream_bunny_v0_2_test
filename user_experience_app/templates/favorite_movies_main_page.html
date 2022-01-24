@@ -44,14 +44,15 @@
     {% for movie in movies %}
         <tr>
             <td>{{movie.id}}</td>
-            <td>{{movie.title}}</td>
+            <td><a href="/user_experience/movie_info_discussion_page/{{movie.id}}">{{movie.title}}</a></td>
             <td>{{movie.year}}</td>
+            <td>(added by who?)</td>
             <td>{{movie.liked_by.count}}</td>
-        {% if movie not in user.liked_by.all %}     
-            <a class=".like" href="/user_experience/like/{{movie.id}}">Like!</a>
-        {% else %}
-            <a class=".like" href="/user_experience/like/{{movie.id}}">Unlike!</a> {# like and inlike can use the same function #}
-        {% endif %}
+            {% if movie not in user.liked_by.all %}
+                <td><a class=".like" href="/user_experience/like/{{movie.id}}">Like!</a></td>
+            {% else %}
+                <td><a class=".like" href="/user_experience/like/{{movie.id}}">Unlike!</a> {# like and inlike can use the same function #}</td>
+            {% endif %}
         </tr>
     {% endfor %}
     
@@ -62,11 +63,11 @@
 {% block script %}
 
 <script>    
-    $('.like').submit(function(e){
+    $('.like').submit(function(e){   /////  .submit is wrong
         e.preventDefault();        
         console.log($(this).serialize())
         $.ajax({
-    		url: '/user_experience/like/<int:movie_id>',   // {{movie.id}}??                      
+    		url: '/user_experience/like/<int:movie_id>',   // {{movie.i                    
     		method: 'post',                         
     		data: $(this).serialize(),              
     		success: function(serverResponse){     

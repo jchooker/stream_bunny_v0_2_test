@@ -88,8 +88,8 @@ def like(request, movie_id):
         movie_list = Movie.objects.filter(imdb_id = movie_id)
         if len(movie_list) > 0:
             movie = movie_list[0]
-            if user not in movie.liked_by.all():
-                pass
+            # if user not in movie.liked_by.all():
+            #     pass
                 # movie.liked_by = user
 
         else:
@@ -105,16 +105,22 @@ def like(request, movie_id):
                 year = movie['year'],
                 director = movie['director'],
                 genres = movie['genres'],
-
-                ## need to add 'added_by' both here and in models.py
             )
 
+            this_movie.liked_by.add(user)
+            my_likes = user.liked_by.all()
+
+            context ={
+                "user" : user,
+                "my_likes": my_likes
+            }
+            return render(request,"user_info_page.html", context)
             # this_movie.liked_by.set(user)
 
 # TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use liked_by.set() instead.
 # TypeError: 'User' object is not iterable
 
-        return redirect("/")  #this is temporary
+        # return redirect("/")  #this is temporary
     else:
         return redirect("/login")
 

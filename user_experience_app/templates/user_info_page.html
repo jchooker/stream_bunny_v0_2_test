@@ -3,6 +3,7 @@
         {% block page_content %}
         <div id="wrapper2">
                 <div class="column" class="vertical_align_top">
+                    <hr>
                     <h3 class="purple"><u><i>{{user.full_name}}</i></u></h3>
                     <div id="book_information1" class="vertical_align_top">
                         <p><b>First Name: {{user.first_name}}</b></p>
@@ -11,21 +12,27 @@
                         <p><b>Birthday: {{user.birthday}}</b></p>
                         <p><b>Joined on: {{user.created_at}}</b></p>
                     </div>
-                    <div id="book_information2">
-                        <p>{{user.first_name}}</p>
-                        <p>{{user.last_name}}</p>
-                        <p>{{user.email}}</p>
-                        <p>{{user.birthday|date:"M j, Y"}}</p>
-                        <p>{{user.created_at|date:"M j, Y"}}</p>
-                    </div>
+
                     <div id="page_3_links">
                         {% comment %} <a href="/success">Go back</a> {% endcomment %}
                         <a href="/user_experience">Go back</a>
                         <a href="/user_experience/user_info_page_edit">Edit user information</a>
                     </div>
                 </div>
+                <hr>
+                <h2>My Favorite Movies</h2>
+                <br>
+
+                {% for film in my_likes %}
+                <h3>{{film.title}}</h3>
+                <p>{{film.year}}</p>
+                <p>{{film.poster_low}}</p>
+                <p>{{film.title}}</p>
+                <br>
+                {% endfor %}
+
                 <div class="column text_align_left" >
-                    <h3 class="purple"> <u><i>Your Favorite Movies</i></u></h3>
+                    {% comment %} <h3 class="purple"> <u><i>Your Favorite Movies</i></u></h3> {% endcomment %}
                     {% for quote in quotes %}
                         <h4>"{{quote.quote}}"</h4>
                         <div class="shift_right">

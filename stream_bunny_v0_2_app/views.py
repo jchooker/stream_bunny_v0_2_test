@@ -59,6 +59,10 @@ def get_movie(request, movie_id):
     # print(movie_id)
     streaming_on = get_stream(movie_id)
     if movie_detail.get('director'):
+        dir_vals = movie_detail.get('director')
+        dir_res = []
+        for dir in dir_vals:
+            dir_res = dir['name']
         movie_dict = {
             'title': movie_detail.get('title'),
             'year' : movie_detail.get('year'),
@@ -73,9 +77,12 @@ def get_movie(request, movie_id):
             'title': movie_detail.get('title'),
             'year' : movie_detail.get('year'),
             'poster_link': movie_detail.get('cover url'),
-            'plot': movie_detail.get('plot'),
-            'streaming_on':streaming_on[0]['stream'],
-            'go_to_stream':streaming_on[0]['stream_link']
+            'plot': movie_detail.get('plot')[0],
+            'streams': streaming_on,
+            # 'streaming_on':streaming_on[0]['stream'],
+            # 'streaming_on':[streaming_on[:]['stream']], #expand this to include all services that carry it?
+            # 'go_to_stream':[streaming_on[:]['stream_link']] #likewise - cont'd from line 77
+            # 'go_to_stream':streaming_on[0]['stream_link']
         }
     return HttpResponse(json.dumps(movie_dict), content_type="application/json")
 

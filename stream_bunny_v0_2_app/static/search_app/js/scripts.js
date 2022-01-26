@@ -46,6 +46,10 @@ function movie_search(){
                                 url: `/get_movie/${this.getAttribute("movie-id")}`,
                                 type: `GET`,
                                 success: function(response){
+                                    let streams = ""
+                                    for (stream of response.streams) {
+                                        streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo'></a>`
+                                    }
                                     if ('director' in response) {
 
                                         console.log(response.streaming_on);  
@@ -59,9 +63,8 @@ function movie_search(){
                                         <p>${response.plot}</p>
                                         <h5>Streaming at: </h5>
                                         <div class='stream-div d-inline-flex justify-content-center'>
-                                        <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png' class='stream-logo'></a>
+                                        ${streams}
                                         </div>`
-    
     
                                     } else {
 
@@ -75,7 +78,7 @@ function movie_search(){
                                         <p>${response.plot}</p>
                                         <h5>Streaming at: </h5>
                                         <div class='stream-div d-inline-flex justify-content-center'>
-                                        <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png'></a>
+                                        ${streams}
                                         </div>`                                   
                                     }
                                     // console.log(response.streaming_on.stream_link, response.streaming_on.stream)

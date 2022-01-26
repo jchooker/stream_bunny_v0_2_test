@@ -69,8 +69,9 @@ def get_movie(request, movie_id):
             'poster_link': movie_detail.get('cover url'),
             'director' : movie_detail.get('director')[0]['name'],
             'plot': movie_detail.get('plot')[0],
-            'streaming_on':streaming_on[0]['stream'],
-            'go_to_stream':streaming_on[0]['stream_link']
+            'streams': streaming_on,
+            # 'streaming_on':streaming_on[0]['stream'],
+            # 'go_to_stream':streaming_on[0]['stream_link']
         }
     else:
         movie_dict = {

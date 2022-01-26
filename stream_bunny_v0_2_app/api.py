@@ -24,7 +24,7 @@ def get_stream(imdb_id):
 
     headers = {
         'x-rapidapi-host': "streaming-availability.p.rapidapi.com",
-        'x-rapidapi-key': "9e6924077bmsh537baf971b723ddp1165e9jsn8c35b01cf3eb"
+        'x-rapidapi-key': "2b0bb807b2msh8f81f82877e9118p17629cjsn1b5858449268"
         }
 
     response = requests.request("GET", url, headers=headers, params=querystring)

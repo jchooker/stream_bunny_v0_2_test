@@ -1,66 +1,44 @@
 {% extends "ue_base.html" %}
 
-
 {% block page_content %}
-<table id="#main" class="table table-primary table-striped table-hovers">
-    <thead>
-        <tr>
-            <th scope="col"></th>
-            <th scope="col">Movie Title</th>
-            <th scope="col">Year</th>
-            {% comment %} <th scope="col">Added by</th> {% endcomment %}
-            <th scope="col"># likes </th>
-            <th scope="col">like/un-like </th>
-        </tr>
-    </thead>
-    <tbody>
-        {% comment %} <tr>
-            <th scope="row">1</th>
-            <td>Mars Attacks</td>
-            <td>1999</td>
-            <td>Matthew Summers</td>
-            <td>101</td>
-            <td><a href="#">like</a>/<a href="#">un-like</a></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Edward Scissorhands</td>
-            <td>1999</td>
-            <td>Joseph Hooker</td>
-            <td>1001</td>
-            <td><a href="#">like</a>/<a href="#">un-like</a></td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>The Princess Bride</td>
-            <td>1988</td>
-            <td>Michael DuWors</td>
-            <td>101</td>
-            <td><a href="#">like</a>/<a href="#">un-like</a></td>
-        </tr> {% endcomment %}
+<div class="containerxx">
+    <h3 class="yellow_text"><i>All Favorite Movies</i></h3>
+    <table id="#main" class="table table-primary table-striped table-hovers">
+        <thead>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col">Movie Title</th>
+                <th scope="col">Year</th>
 
+                    {# <th scope="col">Added by</th> #}
 
-    {% for movie in movies %}
-        <tr>
-            <td>{{movie.id}}</td>
-            <td><a href="#">{{movie.title}}</a></td>
-            <td>{{movie.year}}</td>
-            <td>{{movie.liked_by.count}}</td>
-        {% if movie not in user.liked_by.all %}     
-            <a class=".like" href="like/{{movie.id}}">">Like!</a>
-        {% else %}
-            {% comment %} <a class=".like" href="/user_experience/like/{{movie.id}}">Unlike!</a> {# like and inlike can use the same function #} {% endcomment %}
-            <a class=".like" href="#">Unlike!</a> {# like and inlike can use the same function #}
-        {% endif %}
-        </tr>
-    {% endfor %}
+                <th scope="col"># likes </th>
+                <th scope="col">like/un-like </th>
+            </tr>
+        </thead>
+        <tbody>    
     
-    </tbody>
-</table>
+        {% for movie in movies %}
+            <tr>
+                <td>{{movie.id}}</td>
+                <td><a href="/user_experience/movie_info_discussion_page/{{movie.id}}">{{movie.title}}</a></td>
+                <td>{{movie.year}}</td>
+                <td>{{movie.liked_by.count}}</td>
+            {% if movie not in user.liked_by.all %}    
+            <td><a class=".like" href="/user_experience/like/{{movie.id}}">Like!</a></td>   {# like and unlike can use the same function #}
+                
+            {% else %}
+                <td><a class=".like" href="/user_experience/like/{{movie.id}}">Unlike!</a></td>   {# like and unlike can use the same function #}
+            {% endif %}
+            </tr>
+        {% endfor %}
+        
+        </tbody>
+    </table>
+</div>
 {% endblock page_content %}
 
 {% block script %}
-
 <script>    
     $('.like').submit(function(e){
         e.preventDefault();        
@@ -78,5 +56,4 @@
 
     });
 </script>
-
 {% endblock script %}

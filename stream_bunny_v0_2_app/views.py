@@ -67,14 +67,10 @@ def get_movie(request, movie_id):
             'title': movie_detail.get('title'),
             'year' : movie_detail.get('year'),
             'poster_link': movie_detail.get('cover url'),
-            # 'director' : movie_detail.get('director')[0]['name'],
-            'director' : dir_res,
+            'director' : movie_detail.get('director')[0]['name'],
             'plot': movie_detail.get('plot')[0],
-            'streams': streaming_on,
-            # 'streaming_on':[streaming_on[:]['stream']],
-            # 'streaming_on':streaming_on[0]['stream'],
-            # 'go_to_stream':[streaming_on[:]['stream_link']]
-            # 'go_to_stream':streaming_on[0]['stream_link']
+            'streaming_on':streaming_on[0]['stream'],
+            'go_to_stream':streaming_on[0]['stream_link']
         }
     else:
         movie_dict = {
@@ -111,7 +107,7 @@ def like(request, movie_id):
                 imdb_rating = movie['rating'],
                 poster_link = movie['cover url'],
                 # poster_low = "xxxx",
-                plot = movie['plot'],
+                plot = movie['plot'][0],
                 title = movie['title'],
                 year = movie['year'],
                 director = movie['director'],

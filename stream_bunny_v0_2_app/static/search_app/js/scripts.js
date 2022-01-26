@@ -51,6 +51,9 @@ function movie_search(){
                                         streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo'></a>`
                                     }
                                     if ('director' in response) {
+
+                                        console.log(response.streaming_on);  
+
                                         movie_details.innerHTML=''
                                         movie_details.innerHTML += `
                                         <h3>${response.title}</h3>
@@ -64,6 +67,9 @@ function movie_search(){
                                         </div>`
     
                                     } else {
+
+                                        console.log(response);  
+
                                         movie_details.innerHTML=''
                                         movie_details.innerHTML += `
                                         <h3>${response.title}</h3>
@@ -75,7 +81,7 @@ function movie_search(){
                                         ${streams}
                                         </div>`                                   
                                     }
-                                    console.log(response.streaming_on.stream_link, response.streaming_on.stream)
+                                    // console.log(response.streaming_on.stream_link, response.streaming_on.stream)
                                     movie_details.classList.remove('not-visible')
                                 }
                             })

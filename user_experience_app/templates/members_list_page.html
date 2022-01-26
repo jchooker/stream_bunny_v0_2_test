@@ -2,64 +2,28 @@
 
         {% block page_content %}
         <div id="wrapper2">
-                <div class="column" class="vertical_align_top">
-                    <h3 class="purple"><u><i>Members</i></u></h3>
+                <div class="container" class="vertical_align_top">
+                    <h3 class="yellow_text"><i>Members</i></h3>
                     <table id="#main" class="table table-primary table-striped table-hovers">
                         <thead>
                             <tr>
-                                <th scope="col">ID</th>
+                                <th scope="col"></th>
                                 <th scope="col">Name</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                {% for member in members %}
+
+                    {% for member in members %}
                         <tr>
                             <th scope="row">{{member.id}}</th>
-                            <th scope="row"><a href="members/{{member.id}}">{{member.full_name}}</a></th>
+                            <th scope="row"><a href="/user_experience/user_favorite_movies_page/{{member.id}}">{{member.full_name}}</a></th>
                             <th scope="row"> <a href="#">[Follow / Unfollow] ????</a></th>
                         </tr>
                     {% endfor %}
-                    </table>
-
-                    <div id="page_3_links">
-                        {% comment %} <a href="/success">Go back</a> {% endcomment %}
-                        <a href="/user_experience">Go back</a>
-                        <a href="/user_experience/user_info_page_edit">Edit user information</a>
-                    </div>
-                </div>
-                <div class="column text_align_left" >
-                    <h3 class="purple"> <u><i>Your Favorite Movies</i></u></h3>
                     
-
-
-
-
-
-
-
-
-
-                    {% for quote in quotes %}
-                        <h4>"{{quote.quote}}"</h4>
-                        <div class="shift_right">
-                            <p><i> - {{quote.author}}</i></p>
-                            <p>Added by <a href="/all_quotes_by_user/{{quote.added_by.id}}">{{quote.added_by.first_name}} {{quote.added_by.last_name}}</a></p>
-                            {% if quote.liked_by.count == 1 %}
-                                <p>{{quote.liked_by.count}} like</p>
-                            {% else %}
-                                <p>{{quote.liked_by.count}} likes</p>
-                            {% endif %}
-                            {% if user in quote.liked_by.all %}
-                                <a href="/like_quote/{{quote.id}}/5">unlike</a>
-                            {% else %}
-                                <a href="/like_quote/{{quote.id}}/5">like</a>
-                            {% endif %}
-                            {% if quote.added_by == user %}
-                            <a href="/delete_quote/{{quote.id}}/5">delete</a>
-                            {% endif %}
-                        </div>
-                    {% endfor %}
+                    </table>
                 </div>
-            </div> {% comment %} END OF wrapper2 {% endcomment %}
+        </div> {# END OF wrapper2 #}
+
             {% endblock page_content %}

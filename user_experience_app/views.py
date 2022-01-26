@@ -37,21 +37,26 @@ def member_profile(request, member_id):
     }
     return render(request, 'member_profile.html', context)
 
-def movie_info_discussion_page(request):
+def movie_info_discussion_page(request,movie_id):
     user = User.objects.get(id=request.session['user_id'])
+    movie = Movie.objects.get(id=movie_id)
 
     context = {
         "name_of_page" : "movie_info_discussion_page",
         "user" : user,
+        "movie" : movie,
     }
     return render(request,'movie_info_discussion_page.html',context)
     
-def user_favorite_movies_page(request):
-    user = User.objects.get(id=request.session['user_id'])
+def user_favorite_movies_page(request,member_id):
+    member = User.objects.get(id=member_id)
 
     context = {
         "name_of_page" : "user_favorite_movies_page",
-        "user" : user,
+        "member" : member,
+        "movies" : member.liked_by.all(),
+        "user" : User.objects.get(id=request.session['user_id']),
+
     }
     return render(request,'user_favorite_movies_page.html',context)
     

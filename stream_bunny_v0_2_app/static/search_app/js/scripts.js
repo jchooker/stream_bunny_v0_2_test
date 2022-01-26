@@ -47,6 +47,9 @@ function movie_search(){
                                 type: `GET`,
                                 success: function(response){
                                     if ('director' in response) {
+
+                                        console.log(response.streaming_on);  
+
                                         movie_details.innerHTML=''
                                         movie_details.innerHTML += `
                                         <h3>${response.title}</h3>
@@ -55,12 +58,15 @@ function movie_search(){
                                         <h5>${response.director}</h5>
                                         <p>${response.plot}</p>
                                         <h5>Streaming at: </h5>
-                                        <div class='stream-div'>
-                                        <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png'></a>
+                                        <div class='stream-div d-inline-flex justify-content-center'>
+                                        <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png' class='stream-logo'></a>
                                         </div>`
     
     
                                     } else {
+
+                                        console.log(response);  
+
                                         movie_details.innerHTML=''
                                         movie_details.innerHTML += `
                                         <h3>${response.title}</h3>
@@ -68,12 +74,11 @@ function movie_search(){
                                         <img src="${response.poster_link}" class="movie-img">
                                         <p>${response.plot}</p>
                                         <h5>Streaming at: </h5>
-                                        <div class='stream-div'>
+                                        <div class='stream-div d-inline-flex justify-content-center'>
                                         <a href='${response.go_to_stream}'><img src='/static/images/${response.streaming_on}.png'></a>
-                                        
                                         </div>`                                   
                                     }
-                                    console.log(response.streaming_on.stream_link, response.streaming_on.stream)
+                                    // console.log(response.streaming_on.stream_link, response.streaming_on.stream)
                                     movie_details.classList.remove('not-visible')
                                 }
                             })

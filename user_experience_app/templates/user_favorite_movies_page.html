@@ -20,7 +20,8 @@
         {% for movie in movies %}
             <tr>
                 <td>{{movie.id}}</td>
-                <td><a href="#">{{movie.title}}</a></td>
+                {% comment %} <td><a href="/user_experience/movie_info_discussion_page/{{movie.id}}">{{movie.title}}</a></td> {% endcomment %}
+                <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
                 <td>{{movie.year}}</td>
                 <td>{{movie.liked_by.count}}</td>
             {% if movie not in user.liked_by.all %}    

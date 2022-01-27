@@ -1,7 +1,9 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 from login_app.models import User
-from stream_bunny_v0_2_app.models import Movie
+# from stream_bunny_v0_2_app.models import Movie
+from stream_bunny_v0_2_app.models import Movie, Discussion, Comment
+# from user_experience_app.models import Discussion, Comment
 
 def favorite_movies_main_page(request):
     user = User.objects.get(id=request.session['user_id'])
@@ -47,6 +49,7 @@ def movie_info_discussion_page(request,movie_id):
         "movie" : movie,
     }
     return render(request,'movie_info_discussion_page.html',context)
+
     
 def user_favorite_movies_page(request,member_id):
     member = User.objects.get(id=member_id)
@@ -124,3 +127,47 @@ def like(request, movie_id):
 
     return render(request,"user_info_page.html")
 
+
+
+# MATTHEW'S DISCUSSION WORK (for "movie_discussion.html")
+def movie_discussion_page(request,movie_id):
+    user = User.objects.get(id=request.session['user_id'])
+    movie = Movie.objects.get(id=movie_id)
+    # discussion = Discussion.objects.filter(id=movie_id)
+    discussions = Discussion.objects.all()
+    context = {
+        "name_of_page" : "movie_info_discussion_page",
+        "user" : user,
+        "movie" : movie,
+        "discussions" : discussions,
+    }
+    return render(request,'movie_discussion.html',context)
+
+def discuss(request, movie_id):
+    print(movie_id)
+    Discussion.objects.create(
+        user = User.objects.get(id=request.session['user_id']),
+        movie = Movie.objects.get(id=movie_id),
+        content = request.POST['discuss']
+    )
+
+    # discussions = Discussion.objects.filter(id=movie_id)
+    discussions = Discussion.objects.all()
+    context ={
+        "discussions" : discussions
+    }
+    return redirect(f'/user_experience/movie_discussion/{movie_id}', context)
+
+# def comment(request,  movie_id, discussion_id):
+def comment(request, discussion_id):
+    Comment.objects.create(
+        user = User.objects.get(id=request.session['user_id']),
+        discussion = Discussion.objects.get(id=discussion_id),
+        comment = request.POST['comment']
+    )
+    return render(request,'user_favorite_movies_page.html')
+    # return render(request,'movie_discussion.html')
+
+def delete_discussions(request):
+    Discussion.objects.all().delete()
+    return render(request,'user_favorite_movies_page.html')

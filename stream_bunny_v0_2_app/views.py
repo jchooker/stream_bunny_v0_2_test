@@ -111,24 +111,20 @@ def like(request, movie_id):
                 plot = movie['plot'][0],
                 title = movie['title'],
                 year = movie['year'],
-                director = movie['director'],
+                # director = movie['director'],
                 genres = movie['genres'],
             )
-
             this_movie.liked_by.add(user)
-            my_likes = user.liked_by.all()
+            if "director" in movie.keys():
+                this_movie['director'] = movie['director'],
 
-            context ={
-                "user" : user,
-                "my_likes": my_likes
-            }
-            return render(request,"user_info_page.html", context)
-            # this_movie.liked_by.set(user)
+            # my_likes = user.liked_by.all()
 
-# TypeError: Direct assignment to the forward side of a many-to-many set is prohibited. Use liked_by.set() instead.
-# TypeError: 'User' object is not iterable
-
-        # return redirect("/")  #this is temporary
+            # context ={
+            #     "user" : user,
+            #     "my_likes": my_likes
+            # }
+        return redirect("/user_experience")
     else:
         return redirect("/login")
 

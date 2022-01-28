@@ -81,10 +81,7 @@ function movie_search(){
                                         ${streams}
                                         </div>`                                   
                                     }
-<<<<<<< HEAD:stream_bunny_v0_2_app/static/js/scripts.js
-=======
                                     // console.log(response.streaming_on.stream_link, response.streaming_on.stream)
->>>>>>> master:stream_bunny_v0_2_app/static/search_app/js/scripts.js
                                     movie_details.classList.remove('not-visible')
                                 }
                             })

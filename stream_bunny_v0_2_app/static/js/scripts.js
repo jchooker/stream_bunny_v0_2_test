@@ -75,7 +75,6 @@ function movie_search(){
                                         ${streams}
                                         </div>`                                   
                                     }
-                                    console.log(response.streaming_on.stream_link, response.streaming_on.stream)
                                     movie_details.classList.remove('not-visible')
                                 }
                             })

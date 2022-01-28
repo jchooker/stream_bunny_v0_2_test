@@ -46,7 +46,7 @@ def search(request, query):
                     'id': movie.getID(),
                     } )
         curr_movies = sorted(movie_array, key=lambda d: d['votes'], reverse=True)
-        return HttpResponse(json.dumps(movie_array[:6]), content_type="application/json")
+        return HttpResponse(json.dumps(movie_array[:12]), content_type="application/json")
     else:
         return HttpResponse(
             json.dumps({"no movie": "Can't find movie"}),

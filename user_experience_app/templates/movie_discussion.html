@@ -1,0 +1,52 @@
+{% extends "ue_base.html" %}
+
+{% block page_content %}
+
+
+<div id="">
+    <h3>{{movie.title}}</h3>
+    <h4>{{movie.year}}</h4>
+    <img src="{{movie.poster_link}}" alt="Not sure how to return the image">
+    <a href="#">like/un-like</a>
+    <p>{{movie.plot}}</p>
+    <div id="stream-locs"></div>
+</div>
+
+
+<div id="msg-div">
+    <p id="msg-box-p">Say something about this film:</p>
+    <form action="/user_experience/discuss/{{movie.id}}" method="POST">
+        {% csrf_token %}
+            <textarea id="msg-box"  name="discuss" rows="4"> </textarea>
+            <button type="submit"   value="Post message" id="submit-post-btn" class="wall-btn">Submit</button>
+    </form>
+</div>
+    <div id = "all_posts" >
+{% for msg in discussions %}
+        <div id="each_post">
+            <span class="blue">{{msg.user.first_name}} {{msg.user.last_name}}</span> <p id="created_time"> - {{msg.created_at}}  </p>
+            <p> {{msg.content}} </p>
+        </div>
+    {% for comment in msg.comments.all %}
+            <div id="all-comments">
+                <p>{{comment.comment}}</p>
+            </div>
+    {% endfor %}
+        <div id="comment-div">
+            {% comment %} <form action="/user_experience/comment/{{movie.id}}/{{msg.id}}"  method="POST"> {% endcomment %}
+            <form action="/user_experience/comment/{{msg.id}}"  method="POST">
+                {% csrf_token %}
+                <textarea rows="2" id="comment-box" name="comment"> </textarea><br><br><br>
+                <button type="submit" id="wall-btn" class="wall-btn">Comment</button>
+                <hr>
+            </form>
+        </div>
+{% endfor %}
+    </div>
+
+    <form action="/user_experience/delete_discussions" method="POST">
+        {% csrf_token%}
+        <button type=submit>Delete all posts</button>
+    </form>
+
+    {% endblock page_content %}

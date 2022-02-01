@@ -8,6 +8,7 @@
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Movie Title</th>
+                <th scope="col">Directed by</th>
                 <th scope="col">Year</th>
 
                     {# <th scope="col">Added by</th> #}
@@ -23,6 +24,7 @@
                 <td>{{movie.id}}</td>
                 {% comment %} <td><a href="/user_experience/movie_info_discussion_page/{{movie.id}}">{{movie.title}}</a></td> {% endcomment %}
                 <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
+                <td>{{movie.director.name}}</td>
                 <td>{{movie.year}}</td>
                 <td>{{movie.liked_by.count}}</td>
             {% if movie not in user.liked_by.all %}    
@@ -33,7 +35,7 @@
             {% endif %}
             </tr>
         {% endfor %}
-        
+
         </tbody>
     </table>
 </div>

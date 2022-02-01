@@ -114,16 +114,10 @@ def like(request, movie_id):
                 # director = movie['director'],
                 genres = movie['genres'],
             )
-            this_movie.liked_by.add(user)
+            user.liked_by.add(this_movie)
             if "director" in movie.keys():
-                this_movie['director'] = movie['director'],
-
-            # my_likes = user.liked_by.all()
-
-            # context ={
-            #     "user" : user,
-            #     "my_likes": my_likes
-            # }
+                this_movie.director = movie['director'],
+            this_movie.save()
         return redirect("/user_experience")
     else:
         return redirect("/login")

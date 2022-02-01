@@ -41,20 +41,18 @@
 
 {% block script %}
 <script>    
-    $('.like').submit(function(e){
+    $('.like_un-like').click(function(e){
         e.preventDefault();        
         console.log($(this).serialize())
         $.ajax({
-    		url: '/user_experience/like/<int:movie_id>',   // {{movie.id}}??                      
-    		method: 'post',                         
+    		url: '/user_experience/like/<int:movie_id>',                         
+    		method: 'post',                                                        
     		data: $(this).serialize(),              
     		success: function(serverResponse){     
-                $('#main').html(serverResponse)    
+                $('.like_span').html(serverResponse)    
 	        }
         })
-
-        // I think we need this for a form, not for a-tag:   $(this).trigger('reset') 
-
+        $(this).trigger('reset')  // I think we need this for a form, not for a-tag:   
     });
 </script>
 {% endblock script %}

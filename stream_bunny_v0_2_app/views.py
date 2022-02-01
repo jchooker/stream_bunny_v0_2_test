@@ -106,7 +106,7 @@ def like(request, movie_id):
             this_movie = Movie.objects.create(
                 imdb_id = movie_id,
                 imdb_rating = movie['rating'],
-                poster_link = movie['cover url'],
+                # poster_link = movie['cover url'],
                 # poster_low = "xxxx",
                 plot = movie['plot'][0],
                 title = movie['title'],
@@ -115,8 +115,20 @@ def like(request, movie_id):
                 genres = movie['genres'],
             )
             user.liked_by.add(this_movie)
+            if "poster_link" in movie.keys():
+                this_movie.poster_link = movie['cover url']
             if "director" in movie.keys():
-                this_movie.director = movie['director'],
+                director_list = ''
+                for director in movie['director']:
+                    director_list = director_list + str(director) + ", "
+                director_list = director_list[:-2]
+                this_movie.director = director_list
+                # string1 = movie['director']
+                # x = string1.find("_")
+                # string2 = string1[x+1:]
+                # y = string2.find("_")
+                # string3 = string2[:y]
+                # this_movie.director = string3
             this_movie.save()
         return redirect("/user_experience")
     else:

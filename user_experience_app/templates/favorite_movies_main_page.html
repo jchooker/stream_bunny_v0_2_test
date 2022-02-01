@@ -2,11 +2,11 @@
 
 {% block page_content %}
 <div class="containerxx">
-    <h3 class="yellow_text"><i>All Favorite Movies</i></h3>
+    <h3 class="yellow_text px-5 mx-5"><i>All Favorite Movies</i></h3>
     <table id="#main" class="table table-primary table-striped table-hovers">
         <thead>
             <tr>
-                <th scope="col"></th>
+                <th scope="col" class="px-4"></th>
                 <th scope="col">Movie Title</th>
                 <th scope="col">Directed by</th>
                 <th scope="col">Year</th>
@@ -21,10 +21,9 @@
     
         {% for movie in movies %}
             <tr>
-                <td>{{movie.id}}</td>
-                {% comment %} <td><a href="/user_experience/movie_info_discussion_page/{{movie.id}}">{{movie.title}}</a></td> {% endcomment %}
+                <td class="px-4"></td>
                 <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
-                <td>{{movie.director.name}}</td>
+                <td>{{movie.director}}</td>
                 <td>{{movie.year}}</td>
                 <td>{{movie.liked_by.count}}</td>
             {% if movie not in user.liked_by.all %}    

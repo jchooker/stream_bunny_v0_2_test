@@ -56,39 +56,30 @@ def search(request, query):
 def get_movie(request, movie_id):
     ia = IMDb()
     movie_detail = ia.get_movie(movie_id)
-    # print(movie_id)
     streaming_on = get_stream(movie_id)
+    movie_dict = {
+        'title': movie_detail.get('title'),
+        'year' : movie_detail.get('year'),
+    }
+    if streaming_on:
+        movie_dict['streams'] = streaming_on
+    # else:
+    #     movie_dict['streams'] = "sorry"
+
+    if movie_detail.get('cover url'):
+        movie_dict['poster_link'] = movie_detail.get('cover url')
+    if movie_detail.get('plot'):
+        movie_dict['plot'] = movie_detail.get('plot')[0]
+    if movie_detail.get('rating'):
+        movie_dict['rating'] = movie_detail.get('rating')
     if movie_detail.get('director'):
-        dir_vals = movie_detail.get('director')
-        dir_res = []
-        for dir in dir_vals:
-            dir_res = dir['name']
-        movie_dict = {
-            'title': movie_detail.get('title'),
-            'year' : movie_detail.get('year'),
-            'poster_link': movie_detail.get('cover url'),
-            'director' : movie_detail.get('director')[0]['name'],
-            'plot': movie_detail.get('plot')[0],
-            'streams': streaming_on,
-            # 'streaming_on':streaming_on[0]['stream'],
-            # 'go_to_stream':streaming_on[0]['stream_link']
-        }
-    else:
-        movie_dict = {
-            'title': movie_detail.get('title'),
-            'year' : movie_detail.get('year'),
-            'poster_link': movie_detail.get('cover url'),
-            'plot': movie_detail.get('plot')[0],
-            'streams': streaming_on,
-            # 'streaming_on':streaming_on[0]['stream'],
-            # 'streaming_on':[streaming_on[:]['stream']], #expand this to include all services that carry it?
-            # 'go_to_stream':[streaming_on[:]['stream_link']] #likewise - cont'd from line 77
-            # 'go_to_stream':streaming_on[0]['stream_link']
-        }
+        director_list = ''
+        for i in range(len(movie_detail.get('director'))):
+            director_list += movie_detail.get('director')[i]['name'] 
+            director_list += ", "
+        director_list = director_list[:-2]
+        movie_dict['director'] = director_list
     return HttpResponse(json.dumps(movie_dict), content_type="application/json")
-
-
-######### I can't finish the following code without help from Drew. At least the url paths are working.
 
 def like(request, movie_id):
     if 'user_id' in request.session.keys():
@@ -96,39 +87,36 @@ def like(request, movie_id):
         movie_list = Movie.objects.filter(imdb_id = movie_id)
         if len(movie_list) > 0:
             movie = movie_list[0]
-            # if user not in movie.liked_by.all():
-            #     pass
-                # movie.liked_by = user
-
         else:
             ia = IMDb()
             movie = ia.get_movie(movie_id)
             this_movie = Movie.objects.create(
                 imdb_id = movie_id,
-                imdb_rating = movie['rating'],
-                # poster_link = movie['cover url'],
-                # poster_low = "xxxx",
-                plot = movie['plot'][0],
                 title = movie['title'],
-                year = movie['year'],
-                # director = movie['director'],
-                genres = movie['genres'],
             )
-            user.liked_by.add(this_movie)
-            if "poster_link" in movie.keys():
+            if "rating" in movie.keys():
+                this_movie.imdb_rating = movie['rating']
+            if "cover url" in movie.keys():
                 this_movie.poster_link = movie['cover url']
+            if "plot" in movie.keys():
+                this_movie.plot = movie['plot'][0]
+            if "year" in movie.keys():
+                this_movie.year = movie['year']
+            if "genres" in movie.keys():
+                this_movie.genres = movie['genres']
             if "director" in movie.keys():
                 director_list = ''
                 for director in movie['director']:
                     director_list = director_list + str(director) + ", "
                 director_list = director_list[:-2]
                 this_movie.director = director_list
-                # string1 = movie['director']
-                # x = string1.find("_")
-                # string2 = string1[x+1:]
-                # y = string2.find("_")
-                # string3 = string2[:y]
-                # this_movie.director = string3
+            if "cast" in movie.keys():
+                actor_list = ''
+                for i in range(3):
+                    actor_list = actor_list + str(movie['cast'][i]) + ", "
+                actor_list = actor_list[:-2]
+                this_movie.poster_low = actor_list
+            user.liked_by.add(this_movie)
             this_movie.save()
         return redirect("/user_experience")
     else:
@@ -136,4 +124,3 @@ def like(request, movie_id):
 
 
 
-# C:\Users\jcole\OneDrive\Desktop\c dojo\python_stack\django\final_proj\stream_bunny_v0_2\stream_bunny_v0_2_app\images\hulu.png

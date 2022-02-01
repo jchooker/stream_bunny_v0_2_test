@@ -9,7 +9,9 @@
                 <th scope="col" class="px-4"></th>
                 <th scope="col">Movie Title</th>
                 <th scope="col">Directed by</th>
+                <th scope="col">Cast</th>
                 <th scope="col">Year</th>
+                <th scope="col">Rating</th>
 
                     {# <th scope="col">Added by</th> #}
 
@@ -24,7 +26,9 @@
                 <td class="px-4"></td>
                 <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
                 <td>{{movie.director}}</td>
+                <td>{{movie.poster_low}}</td>
                 <td>{{movie.year}}</td>
+                <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
                 <td>{{movie.liked_by.count}}</td>
             {% if movie not in user.liked_by.all %}    
             <td><a class=".like" href="/user_experience/like/{{movie.id}}">Like!</a></td>   {# like and unlike can use the same function #}

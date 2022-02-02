@@ -11,7 +11,7 @@ urlpatterns = [
     path('members/<int:member_id>',views.member_profile), 
     path('comment',views.comment),
     path('response',views.response), 
-    path('like/<int:movie_id>',views.ue_like), 
+    path('like/<int:movie_id>/<str:origin_page>',views.ue_like), 
 
     # MATTHEW'S DISCUSSION WORK (for "movie_discussion.html")
     path('movie_discussion/<int:movie_id>',views.movie_discussion_page),

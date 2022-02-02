@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from imdb import IMDb
 from django.template.defaulttags import register
-
+from .methods import *
 from stream_bunny_v0_2_app.api import get_stream
 from .models import *
 from user_experience_app.models import *
@@ -31,22 +31,12 @@ def movie_search(request):
 def search(request, query):
     ia = IMDb()
     curr_movies = ia.search_movie_advanced(query, adult=False)
-    print(curr_movies)
     if curr_movies:
-        movie_array = []
-        for movie in curr_movies:
-            if movie.get('votes'):
-                movie_array.append( {
-                    'title': movie.get('title'),
-                    'year': movie.get('year'),
-                    'rating': movie.get('rating'),
-                    'genre': movie.get('genre'),
-                    'poster_link': movie.get('cover url'),
-                    'votes': movie.get('votes'),
-                    'id': movie.getID(),
-                    } )
+        movie_array = get_movie_info(curr_movies)
         curr_movies = sorted(movie_array, key=lambda d: d['votes'], reverse=True)
-        return HttpResponse(json.dumps(movie_array[:12]), content_type="application/json")
+        for i in curr_movies:
+            print(i['cast'])
+        return HttpResponse(json.dumps(movie_array[:8]), content_type="application/json")
     else:
         return HttpResponse(
             json.dumps({"no movie": "Can't find movie"}),
@@ -69,7 +59,8 @@ def get_movie(request, movie_id):
     if movie_detail.get('cover url'):
         movie_dict['poster_link'] = movie_detail.get('cover url')
     if movie_detail.get('plot'):
-        movie_dict['plot'] = movie_detail.get('plot')[0]
+        plot_snipped = movie_detail.get('plot')[0].split('::')[0]   #"snipped" version removes some extraneous text from
+        movie_dict['plot'] = plot_snipped                           #the end of the plot data that database often attaches
     if movie_detail.get('rating'):
         movie_dict['rating'] = movie_detail.get('rating')
     if movie_detail.get('director'):

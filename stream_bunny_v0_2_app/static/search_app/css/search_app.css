@@ -8,19 +8,66 @@
 /* body {
     background-color: black;
 } */
+
+.alegreya{
+    font-family: 'Alegreya Sans SC', sans-serif;
+}
+
 .search:focus {
     background-color: silver;
 }
 #wrapper1 {
     /* outline : 4px solid #fad711; */
     width: 100%;
-    min-height: 1000px;
+    min-height: 2000px;
     /* max-height: 500px;  */
     /* margin: 20px auto; */
     /* border: 1px solid black; */
     /* border-radius: 8px; */
     background-color: #1e90ff;
 }
+
+#carousel {
+    width:20%;
+    height:190px;
+    margin:0px auto;
+}
+#logo{
+    width: 60px;
+    background-color: aliceblue;
+    margin-right:10px;
+}
+#has_logo {
+    display:flex;
+    align-items: center;
+}
+#top-part1 {
+    /* outline: 4px solid red; */
+    /* position:relative; */
+    /* display: flex; */
+    /* justify-content: center; */
+    /* align-items: center; */
+    /* notneed flex? */
+    height:80px;
+    padding: 20px 100px;
+}
+    /* #logo{
+        position: absolute; top: 20px;left: 10px;
+        width: 100px;
+    } */
+    .logo-title{
+        /* position: absolute; top: 50px;left: 110px; */
+        margin-left: 10px;
+        /* color: #000b35; */
+        font-size: 50px;
+        font-weight: bolder;
+    }
+    .logo-motto{
+        /* position: absolute; top: 120px;left: 130px; */
+        color: white;
+        font-size:x-large;
+    }
+
 #middle-part1 {
     width: 100%;
     min-height: 300px;
@@ -53,15 +100,6 @@
     display: none;
 }
 
-/* .results-card {
-    width: 50%;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25);
-    transition: 0.5s;
-    border-radius: 7px;
-    padding: 10px 10px;
-    margin-left: 0;
-} */
-
 .movie-title {
     font-size: 14px;
     font-weight: bold;
@@ -88,18 +126,33 @@
 }
 
 .stream-logo {
-    width: 70px;
+    width: 150px;
 }
 
 #results-box{
     outline : 3px solid #fad711;
-    width: 90%;
+    width: 35%;
     /* width: 800px; */
-    margin: 2%;
+    margin-top: 40px;
     border: 1px solid #9a9a9a;
     border-radius: 7px;
     padding: 4px;
     box-shadow: 8px 8px 9px #00000040;
+    background-color: #ffffe8f1;
+    position: absolute;
+    content: "";
+}
+
+.mouse-on1{
+    color:cornsilk;
+    background-color: cornflowerblue;
+}
+
+.mouse-on1 a{
+    color:cornsilk;
+}
+
+.mouse-off1{
     background-color: #ffffe8f1;
 }
 
@@ -140,6 +193,13 @@ a{
 }
 
 .stream-div {
-    width: 250px;
+    width: 350px;
     display: flex;
+}
+
+.dd-cast {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline-block;
 }

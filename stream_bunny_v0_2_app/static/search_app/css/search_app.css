@@ -12,6 +12,9 @@
 .alegreya{
     font-family: 'Alegreya Sans SC', sans-serif;
 }
+.inline-block{
+    display: inline-block;
+}
 
 .search:focus {
     background-color: silver;
@@ -19,7 +22,7 @@
 #wrapper1 {
     /* outline : 4px solid #fad711; */
     width: 100%;
-    min-height: 2000px;
+    height: 1400px;
     /* max-height: 500px;  */
     /* margin: 20px auto; */
     /* border: 1px solid black; */
@@ -107,6 +110,7 @@
 
 #movie_titles {
     width: 100%;
+    margin-left: 20px;
 }
 
 #right-panel {
@@ -131,12 +135,12 @@
 
 #results-box{
     outline : 3px solid #fad711;
-    width: 35%;
+    width: 600px;
     /* width: 800px; */
-    margin-top: 40px;
+    margin: 44px 0 0 22px;
     border: 1px solid #9a9a9a;
     border-radius: 7px;
-    padding: 4px;
+    padding: 10px;
     box-shadow: 8px 8px 9px #00000040;
     background-color: #ffffe8f1;
     position: absolute;
@@ -198,8 +202,18 @@ a{
 }
 
 .dd-cast {
+    /* text-align: end; */
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
     display: inline-block;
+    margin-left: 6px;
+    text-decoration: none;
+    color: #434343;
+}
+
+.like-movie{
+    text-decoration: none;
+    font-weight: bolder;
+    color: rgb(101, 167, 116);
 }

@@ -17,6 +17,7 @@ const debounce = (func, timer) =>{
 
 function movie_search(){
     let input_field = document.querySelector('#movie_titles');
+
     input_field.addEventListener('keyup', debounce((e)=>{
         console.log(e.target.value)
         if (e.target.value.length > 2) {
@@ -32,7 +33,7 @@ function movie_search(){
                         <div class="row mt-2 mb-2 blue-hov">
                             <div class="col-10">
                                 <h5>${movie.title}&nbsp;(${movie.year})</h5>
-                                <p class="dd-cast"><a href="like/${movie.id}">Like</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;${movie.cast[0]}, ${movie.cast[1]}, ${movie.cast[2]}</p>
+                                <p class="dd-cast"><a href="like/${movie.id}" class="inline-block like-movie">Like &#x1F44D;</a>&emsp;&emsp;&emsp;&emsp;${movie.cast[0]}, ${movie.cast[1]}, ${movie.cast[2]}</p>
                                 
                             </div>
                         </div>
@@ -88,6 +89,7 @@ function movie_search(){
                                     }
                                     // console.log(response.streaming_on.stream_link, response.streaming_on.stream)
                                     movie_details.classList.remove('not-visible')
+                                    results_box.classList.add('not-visible')
                                 }
                             })
                         })

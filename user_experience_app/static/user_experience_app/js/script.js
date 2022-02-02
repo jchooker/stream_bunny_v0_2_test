@@ -8,10 +8,10 @@ $('.like').click(function(e){
             $(`#like_count_${movie_id}`).text(serverResponse)
 
             console.log($(this).text())
-            if ($(this).text() == "like!") {
-                $(this).text("un-like!");
+            if ($(this).text() == "like") {
+                $(this).text("un-like");
             } else {
-                $(this).text("like!");
+                $(this).text("like");
             }    
         }
     })

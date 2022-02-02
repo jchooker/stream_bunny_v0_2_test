@@ -1,4 +1,5 @@
 {% extends "ue_base.html" %}
+{% load static %}
 
 {% block page_content %}
 <div class="">
@@ -31,9 +32,9 @@
                         <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
                         <td id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</td>
                     {% if movie not in user.liked_by.all %}    
-                        <td><a class="like" href="" movie_id="{{movie.id}}">like!</a></td>  
+                        <td><a class="like" href="" movie_id="{{movie.id}}">like</a></td>  
                     {% else %}
-                        <td><a class="like" href="" movie_id="{{movie.id}}">un-like!</a></td>  
+                        <td><a class="like" href="" movie_id="{{movie.id}}">un-like</a></td>  
                     {% endif %}
                     </tr>
                 {% endfor %}
@@ -41,5 +42,6 @@
         </div>
     </table>
 </div>
+
 {% endblock page_content %}
 

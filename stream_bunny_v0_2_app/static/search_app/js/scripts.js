@@ -29,14 +29,19 @@ function movie_search(){
                     data.forEach(movie=> { // correct way to access the various '${movie.[thing]} elements from imdbpy database??
                     results_box.innerHTML += `
                         <a href="" class="item" movie-id="${movie.id}"> 
-                            <div class="row mt-2 mb-2">
-                                <div class="col-10">
-                                    <h5>${movie.title}</h5>
-                                    <p class="text-muted">${movie.year}</p>
-                                    <a href="like/${movie.id}">Like</a>
-                                </div>
+                        <div class="row mt-2 mb-2 blue-hov">
+                            <div class="col-10">
+                                <h5>${movie.title}&nbsp;(${movie.year})</h5>
+                                <p class="dd-cast"><a href="like/${movie.id}">Like</a>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;${movie.cast[0]}, ${movie.cast[1]}, ${movie.cast[2]}</p>
+                                
                             </div>
-                        </a>`
+                        </div>
+                    </a>`
+                    })
+                    $(".blue-hov").hover(function(){
+                        $(this).addClass("mouse-on1")
+                    }, function(){
+                        $(this).removeClass("mouse-on1")
                     })
                     results_box.classList.remove('not-visible')
                     document.querySelectorAll(".item").forEach(function(movie){

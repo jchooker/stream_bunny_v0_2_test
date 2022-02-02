@@ -28,7 +28,7 @@
                         <td>{{movie.director}}</td>
                         <td>{{movie.cast}}</td>
                         <td>{{movie.year}}</td>
-                        <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
+                        <td>{{movie.imdb_rating}}</td>  
                         <td id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</td>
                     {% if movie not in user.liked_by.all %}    
                         <td><a class="like" href="" movie_id="{{movie.id}}">like</a></td>  

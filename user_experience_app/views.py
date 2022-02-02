@@ -34,7 +34,7 @@ def member_profile(request, member_id):
         "name_of_page" : "member_profile_page",
         "member" : member,
         "member_likes" : member_likes,
-        "user" : user,
+        "movies" : member.liked_by.all(),
         # "user_liked" : user_likes,
     }
     return render(request, 'member_profile.html', context)
@@ -74,12 +74,12 @@ def user_info_page_edit(request):
     
 def user_info_page(request):
     user = User.objects.get(id=request.session['user_id'])
-    my_likes = user.liked_by.all()
+    # my_likes = user.liked_by.all()
 
     context = {
         "name_of_page" : "user_info_page",
         "user" : user,
-        "my_likes" : my_likes
+        "movies" : user.liked_by.all(),
     }
     return render(request,'user_info_page.html',context)
     

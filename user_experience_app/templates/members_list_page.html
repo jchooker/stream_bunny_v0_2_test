@@ -11,17 +11,17 @@
                         <thead>
                             <tr>
                                 <th scope="col"></th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Action</th>
+                                <th scope="col" class="w-25 px-5">Name</th>
+                                <th scope="col">About</th>
                             </tr>
                         </thead>
                         <tbody>
 
                     {% for member in members %}
                         <tr>
-                            <th scope="row">{{member.id}}</th>
-                            <th scope="row"><a href="/user_experience/user_favorite_movies_page/{{member.id}}">{{member.full_name}}</a></th>
-                            <th scope="row"> <a href="#">[Follow / Unfollow] ????</a></th>
+                            <td scope="row"></td>
+                            <td scope="row" class="w-25 px-5"><h3><a class="text-decoration-none" href="/user_experience/user_favorite_movies_page/{{member.id}}"><b>{{member.full_name}}</b></a></h3></td>
+                            <td class="pe-5">{% if member.about %}{{member.about}}{% endif %}</td>
                         </tr>
                     {% endfor %}
                     

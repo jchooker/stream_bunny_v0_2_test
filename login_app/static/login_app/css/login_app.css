@@ -8,17 +8,6 @@
 body {
     background-image: linear-gradient(lightblue,lightyellow,lightblue);
 }
-#wrapper1 {
-    /* margin:20px auto; */
-    /* width:1500px; */
-    /* min-height:700px;
-    background-color: ivory;
-    border:brown  5px ridge;
-    padding:30px 50px 30px 50px; */
-    width: 100%;
-    min-height: 1000px;
-    background-color: #1e90ff;
-}
 #wrapper2 {
     display:flex;
 }

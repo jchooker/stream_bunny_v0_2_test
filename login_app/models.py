@@ -51,6 +51,7 @@ class User(models.Model):
     birthday = models.DateField()
     email = models.CharField(max_length=50)
     password = models.CharField(max_length=50)
+    about = models.TextField(null=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = Manager()

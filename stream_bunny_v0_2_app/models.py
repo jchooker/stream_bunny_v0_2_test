@@ -13,7 +13,7 @@ class Movie(models.Model):
     imdb_id = models.CharField(max_length=12, null=True)
     imdb_rating = models.CharField(max_length=3, blank=True, null=True)
     poster_link = models.CharField(max_length=280, blank=True, null=True)
-    poster_low = models.CharField(max_length=280, blank=True, null=True)
+    cast = models.CharField(max_length=280, blank=True, null=True)
     plot = models.TextField(blank=True, null=True)
     title = models.CharField(max_length=100, null=True)
     year = models.PositiveSmallIntegerField(

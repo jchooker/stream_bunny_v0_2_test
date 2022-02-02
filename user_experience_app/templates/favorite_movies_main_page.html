@@ -13,9 +13,6 @@
                 <th scope="col">Cast</th>
                 <th scope="col">Year</th>
                 <th scope="col">Rating</th>
-
-                    {# <th scope="col">Added by</th> #}
-
                 <th scope="col"># likes </th>
                 <th scope="col">like/un-like </th>
             </tr>
@@ -27,7 +24,7 @@
                         <td class="px-4"></td>
                         <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
                         <td>{{movie.director}}</td>
-                        <td>{{movie.poster_low}}</td>
+                        <td>{{movie.cast}}</td>
                         <td>{{movie.year}}</td>
                         <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
                         <td id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</td>

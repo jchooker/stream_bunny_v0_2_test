@@ -1,13 +1,18 @@
 {% extends "ue_base.html" %}
+{% load static %}
 
 {% block page_content %}
-
 
 <div id="">
     <h3>{{movie.title}}</h3>
     <h4>{{movie.year}}</h4>
-    <img src="{{movie.poster_link}}" alt="Not sure how to return the image">
-    <a href="#">like/un-like</a>
+    <img src="{{movie.poster_link}}" alt="movie poster">
+    <p id="like_count_{{movie.id}}" ># of likes: {{movie.liked_by.count}}</p>
+    {% if movie not in user.liked_by.all %}    
+        <a class="like" href="" movie_id="{{movie.id}}">like</a>  
+    {% else %}
+        <a class="like" href="" movie_id="{{movie.id}}">un-like</a>  
+    {% endif %}
     <p>{{movie.plot}}</p>
     <div id="stream-locs"></div>
     
@@ -65,4 +70,4 @@
         <button type=submit>Delete all posts</button>
     </form>
 
-    {% endblock page_content %}
+{% endblock page_content %}

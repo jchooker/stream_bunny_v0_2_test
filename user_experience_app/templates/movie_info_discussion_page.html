@@ -1,11 +1,12 @@
 {% extends "ue_base.html" %}
+{% load static %}
 
 {% block page_content %}
 
 <div id="">
     <h3>{{movie.title}}</h3>
     <h4>{{movie.year}}</h4>
-    <img src="#" alt="Not sure how to return the image">
+    <img src="#" alt="movie poster">
     <p>{{movie.plot}}</p>
 
     <div id="stream-locs"></div>

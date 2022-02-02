@@ -1,4 +1,5 @@
 {% extends "ue_base.html" %}
+{% load static %}
 
 <body>
     <div id="wrapper1">
@@ -27,9 +28,10 @@
         {% endblock page_content %}
 
     </div>
-    {% block script %}
+{% block script %} 
     <script src="{% static 'search_app/js/scripts.js' %}"></script>
-    {% endblock script %}
+{% endblock script %} 
+ 
 </body>
 
 </html>

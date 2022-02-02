@@ -106,7 +106,7 @@ def like(request, movie_id):
                 for i in range(3):
                     actor_list = actor_list + str(movie['cast'][i]) + ", "
                 actor_list = actor_list[:-2]
-                this_movie.poster_low = actor_list
+                this_movie.cast = actor_list
             user.liked_by.add(this_movie)
             this_movie.save()
         return redirect("/user_experience")

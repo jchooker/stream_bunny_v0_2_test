@@ -6,16 +6,39 @@
 <div id="">
     <div class="" class="vertical_align_top">
         <h3 class="yellow_text px-5 mx-5"><i>{{user.full_name}}</i></h3>
-        <div id="book_information1" class="vertical_align_top">
-            <p><b>First Name: {{user.first_name}}</b></p>
-            <p><b>Last Name: {{user.last_name}} </b></p>
-            <p><b>Email: {{user.email}}</b></p>
-            <p><b>Birthday: {{user.birthday}}</b></p>
-            <p><b>Joined on: {{user.created_at}}</b></p>
-        </div>
-
-        <div id="">
-            <a href="/user_experience/user_info_page_edit">Edit user information</a>
+        <div class="mx-5">
+            <table id="" class="table table-primary table-striped table-hovers">
+                <tbody>
+                    <tr>
+                        <td class="px-5 w-13">First Name: </td>
+                        <td class="pe-5">{{user.first_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-5">Last Name: </td>
+                        <td class="pe-5">{{user.last_name}}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-5">Email: </td>
+                        <td class="pe-5">{{user.email}}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-5">Birthday: </td>
+                        <td class="pe-5">{{user.birthday}}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-5">Joined on: </td>
+                        <td class="pe-5">{{user.created_at}}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-5">About you: </td>
+                        <td class="pe-5">{{user.about}}</td>
+                    </tr>
+                    <tr>
+                        <td class="px-5"></td>
+                        <td class="pe-5"><i><a href="/user_experience/user_info_page_edit">Edit user information</a></i></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
     <hr>
@@ -42,7 +65,7 @@
                         <td>{{movie.director}}</td>
                         <td>{{movie.cast}}</td>
                         <td>{{movie.year}}</td>
-                        <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
+                        <td>{{movie.imdb_rating}}</td>  
                         <td id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</td>
                     {% if movie not in user.liked_by.all %}    
                         <td><a class="like" href="" movie_id="{{movie.id}}">like</a></td>  

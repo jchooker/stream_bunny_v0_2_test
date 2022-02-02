@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="{% static 'search_app/css/search_app.css'%}">
     <link rel="stylesheet" href="{% static 'login_app/css/login_app.css' %}">
     <script src="{% static 'login_app/js/script.js' %}"></script>
-    <script defer src="{% static 'search_app/js/scripts.js' %}"></script>
-    <script src="{% static 'user_experience_app/js/script.js' %}"></script>
+    {# <script defer src="{% static 'search_app/js/scripts.js' %}"></script> #}
+    {# <script src="{% static 'user_experience_app/js/script.js' %}"></script> #}
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC:wght@300&display=swap');
     </style>
@@ -127,5 +127,6 @@
     </div>
 </body>
 {% block script %}
+<script src="{% static 'user_experience_app/js/script.js' %}"></script>
 {% endblock script %}
 </html>

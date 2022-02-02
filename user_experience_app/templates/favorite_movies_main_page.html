@@ -1,7 +1,7 @@
 {% extends "ue_base.html" %}
 
 {% block page_content %}
-<div class="containerxx">
+<div class="">
     <h3 class="yellow_text px-5 mx-5"><i>All Favorite Movies</i></h3>
     <table id="#main" class="table table-primary table-striped table-hovers">
         <thead>
@@ -19,45 +19,27 @@
                 <th scope="col">like/un-like </th>
             </tr>
         </thead>
-        <tbody>    
-    
-        {% for movie in movies %}
-            <tr>
-                <td class="px-4"></td>
-                <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
-                <td>{{movie.director}}</td>
-                <td>{{movie.poster_low}}</td>
-                <td>{{movie.year}}</td>
-                <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
-                <td>{{movie.liked_by.count}}</td>
-            {% if movie not in user.liked_by.all %}    
-            <td><a class=".like" href="/user_experience/like/{{movie.id}}">Like!</a></td>   {# like and unlike can use the same function #}
-                
-            {% else %}
-                <td><a class=".like" href="/user_experience/like/{{movie.id}}">Unlike!</a></td>   {# like and unlike can use the same function #}
-            {% endif %}
-            </tr>
-        {% endfor %}
-
-        </tbody>
+        <div id="main">
+            <tbody>           
+                {% for movie in movies %}
+                    <tr>
+                        <td class="px-4"></td>
+                        <td><a href="/user_experience/movie_discussion/{{movie.id}}">{{movie.title}}</a></td>
+                        <td>{{movie.director}}</td>
+                        <td>{{movie.poster_low}}</td>
+                        <td>{{movie.year}}</td>
+                        <td>{{movie.imdb_rating}}</td>  {# this is actually 'cast' #}
+                        <td id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</td>
+                    {% if movie not in user.liked_by.all %}    
+                        <td><a class="like" href="" movie_id="{{movie.id}}">like!</a></td>  
+                    {% else %}
+                        <td><a class="like" href="" movie_id="{{movie.id}}">un-like!</a></td>  
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </div>
     </table>
 </div>
 {% endblock page_content %}
 
-{% block script %}
-<script>    
-    $('.like_un-like').click(function(e){
-        e.preventDefault();        
-        console.log($(this).serialize())
-        $.ajax({
-    		url: '/user_experience/like/<int:movie_id>',                         
-    		method: 'post',                                                        
-    		data: $(this).serialize(),              
-    		success: function(serverResponse){     
-                $('.like_span').html(serverResponse)    
-	        }
-        })
-        $(this).trigger('reset')  // I think we need this for a form, not for a-tag:   
-    });
-</script>
-{% endblock script %}

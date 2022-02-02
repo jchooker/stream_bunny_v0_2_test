@@ -101,20 +101,16 @@ def response(request):
     }
     return render(request,'response_partial.html',context)
 
-def ue_like(request,movie_id):
-    if request.method == 'POST':
-        user = request.session['user']
+def ue_like(request,movie_id,origin_page):
+    if request.session['user_id']:
+        user_id = request.session['user_id']
+        user = User.objects.get(id=user_id)
         movie = Movie.objects.get(id=movie_id)
-
-        # CHECK TO SEE IF THIS IS RIGHT:
-        User.liked_by.delete(movie) ## ???????????
-
-        User.liked_by
-        # Note.objects.create(body=request.POST['new_note'])    
-        context = {
-            # 'notes' : Note.objects.all(),
-        }
-        return render(request,"favorite_movies_main_partial.html",context)
+        if movie in user.liked_by.all():
+            user.liked_by.remove(movie) 
+        else:
+            user.liked_by.add(movie)
+        return HttpResponse(movie.liked_by.all().count())
     return redirect('/')
 
 def like(request, movie_id):

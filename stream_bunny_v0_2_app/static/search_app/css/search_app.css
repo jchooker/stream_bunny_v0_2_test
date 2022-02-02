@@ -158,3 +158,12 @@ a{
     font-weight: bolder;
     color: rgb(101, 167, 116);
 }
+
+.tyr-big {
+    width: 500px;
+    border-radius: 6px;
+}
+
+.text-redify {
+    color: crimson;
+}

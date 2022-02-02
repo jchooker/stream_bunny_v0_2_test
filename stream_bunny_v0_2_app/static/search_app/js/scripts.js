@@ -56,7 +56,7 @@ function movie_search(){
                                     for (stream of response.streams) {
                                         streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo'></a>`
                                     }
-                                    if ('director' in response) {
+                                    if (('director' in response) && !(response.streaming_on == undefined )) {
 
                                         console.log(response.streaming_on);  
 
@@ -70,6 +70,33 @@ function movie_search(){
                                         <h5>Streaming at: </h5>
                                         <div class='stream-div d-inline-flex justify-content-center'>
                                         ${streams}
+                                        </div>`
+                                    } else if (('director' in response) && (response.streaming_on == undefined )) {
+                                            movie_details.innerHTML=''
+                                            movie_details.innerHTML += `
+                                            <h3>${response.title}</h3>
+                                            <h5>${response.year}</h5>
+                                            <img src="${response.poster_link}" class="movie-img">
+                                            <h5>${response.director}</h5>
+                                            <p>${response.plot}</p>
+                                            <h5>Streaming at: </h5>
+                                            <h6 class='text-redify'><i>Title not found streaming anywhere!</i></h6>
+                                            <div class='stream-div d-inline-flex justify-content-center'>
+                                            <img class="tyr-big" src="/static/images/tyrion.gif" alt="tyrion-no-stream">
+                                            </div>`
+                                        
+                                    } else if ( !('director' in response) && (response.streaming_on == undefined ) ) {
+                                        movie_details.innerHTML=''
+                                        movie_details.innerHTML += `
+                                        <h3>${response.title}</h3>
+                                        <h5>${response.year}</h5>
+                                        <img src="${response.poster_link}" class="movie-img">
+                                        <h5>${response.director}</h5>
+                                        <p>${response.plot}</p>
+                                        <h5>Streaming at: </h5>
+                                        <h6 class='text-redify'><i>Title not found streaming anywhere!</i></h6>
+                                        <div class='stream-div d-inline-flex justify-content-center'>
+                                        <img class="tyr-big" src="/static/images/tyrion.gif" alt="tyrion-no-stream">
                                         </div>`
     
                                     } else {

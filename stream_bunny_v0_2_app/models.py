@@ -44,13 +44,22 @@ class Movie(models.Model):
 
 
 
+
+class DiscussionManager(models.Manager):
+    def validator(self,postData):
+        errors = {}
+
+        if len(postData['discuss']) <10:
+            errors['discussion'] = "*A new post should be at least 10 characters"
+        return errors
+
 class Discussion(models.Model):
     user = models.ForeignKey(User, related_name="discussions", on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, related_name="discussions", on_delete=models.CASCADE)
     content = models.CharField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    objects = DiscussionManager()
     class Meta:
         ordering = ['-created_at']
 

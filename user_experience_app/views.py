@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
 from login_app.models import User
+from django.contrib import messages
 # from stream_bunny_v0_2_app.models import Movie
 from stream_bunny_v0_2_app.models import Movie, Discussion, Comment
 # from user_experience_app.models import Discussion, Comment
@@ -130,7 +131,8 @@ def movie_discussion_page(request,movie_id):
     user = User.objects.get(id=request.session['user_id'])
     movie = Movie.objects.get(id=movie_id)
     # discussion = Discussion.objects.filter(id=movie_id)
-    discussions = Discussion.objects.all()
+    discussions = Discussion.objects.filter(movie=movie_id)
+    
     context = {
         "name_of_page" : "movie_info_discussion_page",
         "user" : user,
@@ -140,29 +142,35 @@ def movie_discussion_page(request,movie_id):
     return render(request,'movie_discussion.html',context)
 
 def discuss(request, movie_id):
-    print(movie_id)
-    Discussion.objects.create(
-        user = User.objects.get(id=request.session['user_id']),
-        movie = Movie.objects.get(id=movie_id),
-        content = request.POST['discuss']
-    )
-
-    # discussions = Discussion.objects.filter(id=movie_id)
-    discussions = Discussion.objects.all()
+    errors = Discussion.objects.validator(request.POST)
+    discussions = Discussion.objects.filter(movie=movie_id)
     context ={
         "discussions" : discussions
     }
-    return redirect(f'/user_experience/movie_discussion/{movie_id}', context)
+    if errors:
+        for k, v in errors.items():
+            messages.error(request, v)
+        request.session['message_status'] = "error"
+        return redirect(f'/user_experience/movie_discussion/{movie_id}', context)
 
-# def comment(request,  movie_id, discussion_id):
-def comment(request, discussion_id):
+    else:
+        print(movie_id)
+        Discussion.objects.create(
+            user = User.objects.get(id=request.session['user_id']),
+            movie = Movie.objects.get(id=movie_id),
+            content = request.POST['discuss']
+        )
+
+        return redirect(f'/user_experience/movie_discussion/{movie_id}', context)
+
+def comment(request, msg_id, movie_id):
     Comment.objects.create(
         user = User.objects.get(id=request.session['user_id']),
-        discussion = Discussion.objects.get(id=discussion_id),
+        discussion = Discussion.objects.get(id=msg_id),
         comment = request.POST['comment']
     )
-    return render(request,'user_favorite_movies_page.html')
-    # return render(request,'movie_discussion.html')
+
+    return redirect(f'/user_experience/movie_discussion/{movie_id}')
 
 def delete_discussions(request):
     Discussion.objects.all().delete()

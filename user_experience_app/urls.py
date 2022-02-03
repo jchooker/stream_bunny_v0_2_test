@@ -8,7 +8,7 @@ urlpatterns = [
     path('user_info_page_edit',views.user_info_page_edit),
     path('user_info_page',views.user_info_page), 
     path('members_list_page',views.members_list_page), 
-    path('comment',views.comment),
+    # path('comment',views.comment),
     path('response',views.response), 
     path('like/<int:movie_id>/<str:origin_page>',views.ue_like), 
 

@@ -4,9 +4,9 @@
 
         {% block page_content %}
         <!-- <div id="wrapper2"> -->
-            <div class="">
-                <h3 class="yellow_text px-5 mx-5"><i>All Members</i></h3>
-                <table id="#main" class="table table-primary table-striped table-hovers">
+            <div class="container">
+                <h3 class="yellow_text mx-5 px-3"><i>All Members</i></h3>
+                <table id="#main" class="table table-primary table-striped table-hovers pb-3">
                                 <table id="#main" class="table table-primary table-striped table-hovers">
                         <thead>
                             <tr>
@@ -20,8 +20,8 @@
                     {% for member in members %}
                         <tr>
                             <td scope="row"></td>
-                            <td scope="row" class="w-25 px-5"><h3><a class="text-decoration-none" href="/user_experience/user_favorite_movies_page/{{member.id}}"><b>{{member.full_name}}</b></a></h3></td>
-                            <td class="pe-5">{% if member.about %}{{member.about}}{% endif %}</td>
+                            <td scope="row" class="w-25 px-5"><h5><a class="text-decoration-none" href="/user_experience/user_favorite_movies_page/{{member.id}}"><b>{{member.full_name}}</b></a></h5></td>
+                            <td class="pe-5 justify-text">{% if member.about %}{{member.about}}{% endif %}</td>
                         </tr>
                     {% endfor %}
                     

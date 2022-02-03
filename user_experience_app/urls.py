@@ -16,6 +16,6 @@ urlpatterns = [
     path('movie_discussion/<int:movie_id>',views.movie_discussion_page),
     path('discuss/<int:movie_id>',views.discuss), 
     # path('comment/<int:movie_id>/<int:discussion_id>',views.comment), 
-    path('comment/<int:discussion_id>',views.comment), 
+    path('comment/<int:msg_id>/<int:movie_id>',views.comment), 
     path('delete_discussions',views.delete_discussions), 
 ]

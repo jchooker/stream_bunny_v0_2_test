@@ -126,7 +126,7 @@ input{
         position: relative;
     }
     #msg-box{
-        width: 80%;
+        width: 40%;
         margin-left: 7%;
         border-radius: 20px;
         padding: 14px;
@@ -139,12 +139,15 @@ input{
         font-size: 24px;
     }
     #submit-post-btn{
-        position: absolute; top: 100%; right: 13%;
+        position: absolute; top: 105%; left: 38%;
         /* margin-left:72.8%; */
     }
+.member-profile-link{
+    text-decoration: none;
+}
 #all_posts{
     /* height: 200px; */
-    width: 80%;
+    width: 60%;
     margin: 80px 0px 0px 100px;
     /* background-color: red ; */
     /* outline: 2px solid black; */
@@ -177,15 +180,25 @@ input{
     margin-left: 30%;
     border-radius: 10px;
     padding: 1%;
-    background-color: #bfc3d279;
+    background-color: #ffffff70;
 }
 #wall-btn{
     /* margin-left: 87.5%; */
-    position: absolute; top: 58%; right: 0%;
+    position: absolute; top: 63%; right: 0%;
 }
 .wall-btn{
     border-radius: 50% / 5%;
     padding:20px;
     border: 2px solid rgb(38, 14, 14);
     padding:10px 20px;
+}
+
+
+#discuss-wrap{
+    padding: 24px;
+    overflow-wrap: break-word;
+}
+#discuss-movie-details{
+    /* outline: 4px solid yellow; */
+    padding-top: 42px;
 }

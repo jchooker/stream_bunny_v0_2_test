@@ -3,34 +3,47 @@
 
 {% block page_content %}
 
-<div id="">
-    <h3>{{movie.title}}</h3>
-    <h4>{{movie.year}}</h4>
-    <img src="{{movie.poster_link}}" alt="movie poster">
-    <p id="like_count_{{movie.id}}" ># of likes: {{movie.liked_by.count}}</p>
-    {% if movie not in user.liked_by.all %}    
-        <a class="like" href="" movie_id="{{movie.id}}">like</a>  
-    {% else %}
-        <a class="like" href="" movie_id="{{movie.id}}">un-like</a>  
-    {% endif %}
-    <p>{{movie.plot}}</p>
-    <div id="stream-locs"></div>
-    
-    <p>id = {{movie.id}}</p>
-    <p>imdb_id = {{movie.imdb_id}}</p>
-    <p>imdb_rating = {{movie.imdb_rating}}</p>
-    <p>poster_link = {{movie.poster_link}}</p>
-    <p>poster_low = {{movie.poster_low}}</p>
-    <p>plot = {{movie.plot}}</p>
+{% if messages %}
+<div class="col-12" id="errors-new">
+    <ul class = "errors-ul">
+    <p class="error-p">&#9888;</p>
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+</div> 
+{% endif %}
 
-    <p>title = {{movie.title}}</p>
-    <p>year = {{movie.year}}</p>
-    <p>director = {{movie.director}}</p>
-    <p>genres = {{movie.genres}}</p>
-    <p>liked_by = {{movie.liked_by.all}}</p>
+<div id="discuss-wrap" class="row">
+    <div id="discuss-movie-info" class="col 4">
+        <h3>{{movie.title}}</h3>
+        <h4>{{movie.year}}</h4>
+        <img src="{{movie.poster_link}}" alt="movie poster">
+        <p id="like_count_{{movie.id}}" ># of likes: {{movie.liked_by.count}}</p>
+        {% if movie not in user.liked_by.all %}    
+            <a class="like" href="" movie_id="{{movie.id}}">like</a>  
+        {% else %}
+            <a class="like" href="" movie_id="{{movie.id}}">un-like</a>  
+        {% endif %}
+        <p>{{movie.plot}}</p>
+        <div id="stream-locs"></div>
+    </div>
+    <div id="discuss-movie-details" class="col-8">
+        <p>id = {{movie.id}}</p>
+        <p>imdb_id = {{movie.imdb_id}}</p>
+        <p>imdb_rating = {{movie.imdb_rating}}</p>
+        <p class="wrap-text">poster_link = {{movie.poster_link}}</p>
+        <p>poster_low = {{movie.poster_low}}</p>
+        <p>plot = {{movie.plot}}</p>
 
-    <p>request.session.keys = {{request.session.keys}}</p>
+        <p>title = {{movie.title}}</p>
+        <p>year = {{movie.year}}</p>
+        <p>director = {{movie.director}}</p>
+        <p>genres = {{movie.genres}}</p>
+        <p>liked_by = {{movie.liked_by.all}}</p>
 
+        <p>request.session.keys = {{request.session.keys}}</p>
+    </div>
 </div>
 
 
@@ -45,17 +58,20 @@
     <div id = "all_posts" >
 {% for msg in discussions %}
         <div id="each_post">
-            <span class="blue">{{msg.user.first_name}} {{msg.user.last_name}}</span> <p id="created_time"> - {{msg.created_at}}  </p>
+            <span class="blue"><a href= "/user_experience/user_favorite_movies_page/{{msg.user.id}}" class="member-profile-link">{{msg.user.full_name}}</a></span>
+            <p id="created_time"> - {{msg.created_at}}  </p>
+
             <p> {{msg.content}} </p>
         </div>
     {% for comment in msg.comments.all %}
             <div id="all-comments">
+                <a href= "/user_experience/user_favorite_movies_page/{{comment.user.id}}" class="member-profile-link">{{comment.user.full_name}}</a>
                 <p>{{comment.comment}}</p>
             </div>
     {% endfor %}
         <div id="comment-div">
             {% comment %} <form action="/user_experience/comment/{{movie.id}}/{{msg.id}}"  method="POST"> {% endcomment %}
-            <form action="/user_experience/comment/{{msg.id}}"  method="POST">
+            <form action="/user_experience/comment/{{msg.id}}/{{movie.id}}"  method="POST">
                 {% csrf_token %}
                 <textarea rows="2" id="comment-box" name="comment"> </textarea><br><br><br>
                 <button type="submit" id="wall-btn" class="wall-btn">Comment</button>

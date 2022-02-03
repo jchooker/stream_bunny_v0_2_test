@@ -132,46 +132,41 @@ def movie_discussion_page(request,movie_id):
     movie = Movie.objects.get(id=movie_id)
     # discussion = Discussion.objects.filter(id=movie_id)
     discussions = Discussion.objects.filter(movie=movie_id)
-    
+    genres_2 = ''
+    if movie.genres:
+        genres = movie.genres
+        genre_list = genres.split("'")
+        for i in range(1,len(genre_list),2):
+            genres_2 += genre_list[i] + ' - '
+        genres_2 = genres_2[:-3]
+
     context = {
         "name_of_page" : "movie_info_discussion_page",
         "user" : user,
         "movie" : movie,
+        "genres" : genres_2, 
         "discussions" : discussions,
     }
     return render(request,'movie_discussion.html',context)
 
 def discuss(request, movie_id):
-    errors = Discussion.objects.validator(request.POST)
-    discussions = Discussion.objects.filter(movie=movie_id)
-    context ={
-        "discussions" : discussions
-    }
-    if errors:
-        for k, v in errors.items():
-            messages.error(request, v)
-        request.session['message_status'] = "error"
-        return redirect(f'/user_experience/movie_discussion/{movie_id}', context)
-
-    else:
-        print(movie_id)
+    if len(request.POST['discuss']) > 1:
         Discussion.objects.create(
             user = User.objects.get(id=request.session['user_id']),
             movie = Movie.objects.get(id=movie_id),
             content = request.POST['discuss']
         )
-
-        return redirect(f'/user_experience/movie_discussion/{movie_id}', context)
+    return redirect(f'/user_experience/movie_discussion/{movie_id}')
 
 def comment(request, msg_id, movie_id):
-    Comment.objects.create(
-        user = User.objects.get(id=request.session['user_id']),
-        discussion = Discussion.objects.get(id=msg_id),
-        comment = request.POST['comment']
-    )
-
+    if len(request.POST['comment']) > 1:
+        Comment.objects.create(
+            user = User.objects.get(id=request.session['user_id']),
+            discussion = Discussion.objects.get(id=msg_id),
+            comment = request.POST['comment']
+        )
     return redirect(f'/user_experience/movie_discussion/{movie_id}')
 
 def delete_discussions(request):
     Discussion.objects.all().delete()
-    return render(request,'user_favorite_movies_page.html')
+    return redirect('/user_experience')

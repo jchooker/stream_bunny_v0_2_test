@@ -3,87 +3,73 @@
 
 {% block page_content %}
 
-{% if messages %}
-<div class="col-12" id="errors-new">
-    <ul class = "errors-ul">
-    <p class="error-p">&#9888;</p>
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-</div> 
-{% endif %}
-
-<div id="discuss-wrap" class="row">
-    <div id="discuss-movie-info" class="col 4">
-        <h3>{{movie.title}}</h3>
-        <h4>{{movie.year}}</h4>
-        <img src="{{movie.poster_link}}" alt="movie poster">
-        <p id="like_count_{{movie.id}}" ># of likes: {{movie.liked_by.count}}</p>
+<div class="row mx-5 px-5 text-light">
+    <h1 class="yellow_text"><i>{{movie.title}}</i></h1>
+    <div id="discuss-movie-infoXXXX" class="col-4 bg-warningxxx">
+        <h3 class="">{{movie.year}}</h3>
+        <img class="w-12 pb-4" src="{{movie.poster_link}}" alt="movie poster">
+        <p class="mb-1 mb-negativexx"><i>{{genres}}</i></p>
+        <p class="mb-1 justify-text">{{movie.plot}}</p>
+        <p class="mb-1">Starring <i>{{movie.cast}}</i></p>
+        <p class="mb-1">Directed By <i>{{movie.director}}</i></p>
+        <p class="mb-1">IMDB rating {{movie.imdb_rating}}</p>
         {% if movie not in user.liked_by.all %}    
-            <a class="like" href="" movie_id="{{movie.id}}">like</a>  
+            <a class="like btn btn-sm btn-light btn-outline-secondary my-4" href="" movie_id="{{movie.id}}">like</a>  
         {% else %}
-            <a class="like" href="" movie_id="{{movie.id}}">un-like</a>  
+            <a class="like btn btn-sm btn-light btn-outline-secondary my-4" href="" movie_id="{{movie.id}}">un-like</a>  
         {% endif %}
-        <p>{{movie.plot}}</p>
+        <p class="pt-2"><span id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</span> likes - liked by: </p>
+        {#<p></p>#}
+        {% for user in movie.liked_by.all %} <p class='my-1'><a class="ms-4 fst-italic text-decoration-none text-warning" href="xxxxxxxx"> {{user.full_name}} </a></p> {% endfor %}
+
         <div id="stream-locs"></div>
     </div>
-    <div id="discuss-movie-details" class="col-8">
-        <p>id = {{movie.id}}</p>
-        <p>imdb_id = {{movie.imdb_id}}</p>
-        <p>imdb_rating = {{movie.imdb_rating}}</p>
-        <p class="wrap-text">poster_link = {{movie.poster_link}}</p>
-        <p>poster_low = {{movie.poster_low}}</p>
-        <p>plot = {{movie.plot}}</p>
-
-        <p>title = {{movie.title}}</p>
-        <p>year = {{movie.year}}</p>
-        <p>director = {{movie.director}}</p>
-        <p>genres = {{movie.genres}}</p>
-        <p>liked_by = {{movie.liked_by.all}}</p>
-
-        <p>request.session.keys = {{request.session.keys}}</p>
-    </div>
-</div>
-
-
-<div id="msg-div">
-    <p id="msg-box-p">Say something about this film:</p>
-    <form action="/user_experience/discuss/{{movie.id}}" method="POST">
-        {% csrf_token %}
-            <textarea id="msg-box"  name="discuss" rows="4"> </textarea>
-            <button type="submit"   value="Post message" id="submit-post-btn" class="wall-btn">Submit</button>
-    </form>
-</div>
-    <div id = "all_posts" >
-{% for msg in discussions %}
-        <div id="each_post">
-            <span class="blue"><a href= "/user_experience/user_favorite_movies_page/{{msg.user.id}}" class="member-profile-link">{{msg.user.full_name}}</a></span>
-            <p id="created_time"> - {{msg.created_at}}  </p>
-
-            <p> {{msg.content}} </p>
-        </div>
-    {% for comment in msg.comments.all %}
-            <div id="all-comments">
-                <a href= "/user_experience/user_favorite_movies_page/{{comment.user.id}}" class="member-profile-link">{{comment.user.full_name}}</a>
-                <p>{{comment.comment}}</p>
-            </div>
-    {% endfor %}
-        <div id="comment-div">
-            {% comment %} <form action="/user_experience/comment/{{movie.id}}/{{msg.id}}"  method="POST"> {% endcomment %}
-            <form action="/user_experience/comment/{{msg.id}}/{{movie.id}}"  method="POST">
-                {% csrf_token %}
-                <textarea rows="2" id="comment-box" name="comment"> </textarea><br><br><br>
-                <button type="submit" id="wall-btn" class="wall-btn">Comment</button>
-                <hr>
-            </form>
-        </div>
-{% endfor %}
+    <div class="col-7 ms-5 ps-5" >
+        <h2 class="mb-4 text-light">Discussion about this film:</h2>
+        {% if discussions %}
+            {% for msg in discussions %}
+                    <a class="text-decoration-none text-warning" href= "/user_experience/user_favorite_movies_page/{{msg.user.id}}" >{{msg.user.full_name}}</a>
+                    <span> - {{msg.created_at}}</span>
+                    <p class="p-2"> {{msg.content}} </p>
+                {% for comment in msg.comments.all %}
+                        <div class="ms-5">
+                            <a class="text-decoration-none text-warning" href= "/user_experience/user_favorite_movies_page/{{comment.user.id}}" class="member-profile-link">{{comment.user.full_name}}</a>
+                            <span> - {{comment.created_at}}</span>
+                            <p>{{comment.comment}}</p>
+                        </div>
+                {% endfor %}
+                <form class="ms-5 p-2" action="/user_experience/comment/{{msg.id}}/{{movie.id}}"  method="POST">
+                    {% csrf_token %}
+                    <div class="w-100 text-end" >
+                        <textarea rows="2" class="w-50  p-2 mb-2" name="comment" placeholder="Write a response"> </textarea>
+                    </div>
+                    <div class="w-100 text-end" >
+                        <button type="submit" class="btn btn-sm btn-light btn-outline-secondary">Respond</button>
+                    </div>
+                </form>
+            {% endfor %}
+        {% else %}
+            <h3 class="m-4 text-light">No discussions yet</h3>
+        {% endif %}
+    
+        <div class="spacer"></div>
+        <h2 class="my-4 text-light">Share your thoughts about this film:</h2>
+        <form action="/user_experience/discuss/{{movie.id}}" method="POST">
+            {% csrf_token %}
+                <textarea class="w-100 p-2"  name="discuss" rows="6" placeholder="Write your thoughts here"> </textarea>
+                <div class="w-100 d-flex justify-content-end">
+                    <button type="submit" class="btn btn-sm btn-light btn-outline-secondary my-4"   value="Post message" id="submit-post-btn" class="wall-btn">Share</button>
+                </div>
+        </form>
     </div>
 
-    <form action="/user_experience/delete_discussions" method="POST">
-        {% csrf_token%}
-        <button type=submit>Delete all posts</button>
-    </form>
+
+<div class="spacer"></div>
+
+<form action="/user_experience/delete_discussions" method="POST">
+    {% csrf_token%}
+    <button type=submit>Delete all posts</button>
+</form>
+</div>
 
 {% endblock page_content %}

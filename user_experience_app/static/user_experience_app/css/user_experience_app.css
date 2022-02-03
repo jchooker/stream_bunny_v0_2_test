@@ -23,4 +23,19 @@ body {
 .w-13 {
     width: 13%;
 }
-
+.w-12 {
+    width: 37%;
+}
+.justify-text {
+    text-align: justify;
+}
+.spacer {
+    height:100px;
+    width:100%;
+}
+.mb-negative {
+    margin-bottom: 10px;
+}
+.text-xxl {
+    font-size: 70px;
+}

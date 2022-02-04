@@ -12,7 +12,7 @@ def get_movie_info(curr_movies):
                 'year': movie.get('year'),
                 'cast': cast_subarray,
                 'rating': movie.get('rating'),
-                'genre': movie.get('genre'),
+                'genres': movie.get('genres'),
                 'poster_link': movie.get('cover url'),
                 'votes': movie.get('votes'),
                 'id': movie.getID(),

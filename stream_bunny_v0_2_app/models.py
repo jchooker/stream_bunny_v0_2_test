@@ -21,6 +21,7 @@ class Movie(models.Model):
         validators=[MinValueValidator(1878), max_value_current_year],
     )
     director = models.CharField(max_length=100, null=True)
+    streaming_on = models.CharField(max_length=100, null=True)
     genres = models.CharField(max_length=100, null=True)
     liked_by = models.ManyToManyField(User, related_name="liked_by")
 
@@ -33,9 +34,10 @@ class Movie(models.Model):
             'rating':self.imdb_rating,
             'plot':self.plot,
             'poster_link':self.poster_link,
-            'poster_low':self.poster_low,
+            # 'poster_low':self.poster_low,
             'year':self.year,
             'director':self.director,
+            'streaming_on':self.streaming_on,
             'genres':self.genres
         }
 

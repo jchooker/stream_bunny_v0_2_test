@@ -160,11 +160,23 @@ a{
 }
 
 .tyr-big {
-    width: 500px;
+    width: 400px;
     border-radius: 6px;
+    margin-right: 75px;
 }
 
 .text-redify {
     color: crimson;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.no-stream-result {
+    display: block;
+    margin: auto;
+}
+
+.yellow_text {
+    color:yellow;
 }
 

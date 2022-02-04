@@ -39,7 +39,7 @@
 
             <label for="about-form" id="about-label">Add an "About Me" section</label>
             <div class="row about-row">
-                <form class="ms-5 p-2" action="/login/about_me/{{user.id}}" method="POST">
+                <form class="ms-5 p-2" action="/login/about_me_save" method="POST">
                     {% csrf_token %}
                     <div class="w-100 text-end">
                         <textarea rows="10" class="w-100  p-2 mb-2" name="about_me" placeholder="Tell us about yourself"></textarea>

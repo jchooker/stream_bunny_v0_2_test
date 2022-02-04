@@ -54,7 +54,7 @@ def register(request):
         context = {
             'user':user
         }
-        return render(request, 'about_me.html', context)
+        return redirect('/login/about_me')
 
 def login(request):
     request.session.flush()
@@ -91,3 +91,18 @@ def about_me(request, user_id):
     user.save()
 
     return redirect('/user_experience/user_info_page')
+
+def about_me_page(request):
+    user_id = request.session['user_id']
+    user = User.objects.get(id=user_id)
+    context = {
+        "user" : user,
+    }
+    return render(request,"about_me.html",context)
+
+def about_me_save(request):
+    user_id = request.session['user_id']
+    user = User.objects.get(id=user_id)
+    user.about = request.POST['about_me']
+    user.save()
+    return redirect("/user_experience")

@@ -68,39 +68,6 @@ li {
     height:20px;
     margin: 5px 0px 15px 20px;
 }
-
-/* about_me page */
-
-/* .about-container{
-    background-color: dodgerblue;
-    padding-top: 5%;
-}
-.about-row{
-    width:400px;
-    height: 400px;
-    margin:2%;
-}
-#about-label{
-    margin-left: 5%;
-}
-#about-me-textarea{
-    margin-top: 5%;
-    padding: 10px;
-}
-.skip{
-    display: block;
-    margin-left: 26%;
-    color: rgb(255, 255, 0);
-    text-decoration: none;
-    padding-bottom: 30px; */
-/* } */
-
-
-
-
-/* .w_fit_content {
-    width: max-content;
-} */
 .h_400px {
     height: 400px;
 }

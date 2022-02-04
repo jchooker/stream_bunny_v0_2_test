@@ -154,18 +154,34 @@ def discuss(request, movie_id):
         Discussion.objects.create(
             user = User.objects.get(id=request.session['user_id']),
             movie = Movie.objects.get(id=movie_id),
-            content = request.POST['discuss']
+            content = request.POST['discuss'],
         )
-    return redirect(f'/user_experience/movie_discussion/{movie_id}')
+    discussions = Discussion.objects.filter(movie=movie_id)
+    context = {
+        "discussions" : discussions,
+        "movie" : Movie.objects.get(id=movie_id),
+    }
+    return render(request,'response_partial.html',context)
 
-def comment(request, msg_id, movie_id):
+def comment(request,movie_id,msg_id):
     if len(request.POST['comment']) > 1:
         Comment.objects.create(
             user = User.objects.get(id=request.session['user_id']),
             discussion = Discussion.objects.get(id=msg_id),
             comment = request.POST['comment']
         )
-    return redirect(f'/user_experience/movie_discussion/{movie_id}')
+    discussions = Discussion.objects.filter(movie=movie_id)
+    context = {
+        "discussions" : discussions,
+        "movie" : Movie.objects.get(id=movie_id),
+    }
+    return render(request,'response_partial.html',context)
+
+    # msg = Discussion.objects.get(id=msg_id)
+    # context = {
+    #     "msg" : msg,
+    # }
+    # return render(request,'comment_partial.html',context)
 
 def delete_discussions(request):
     Discussion.objects.all().delete()

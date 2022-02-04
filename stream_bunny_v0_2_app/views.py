@@ -114,6 +114,3 @@ def like(request, movie_id):
         return redirect("/user_experience")
     else:
         return redirect("/login")
-
-
-

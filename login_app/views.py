@@ -50,7 +50,11 @@ def register(request):
         request.session['user_id'] = user.id
         # if 'errors' in request.session.keys():
         #     del request.session['errors']
-        return redirect('/user_experience')
+        # return redirect('/user_experience')
+        context = {
+            'user':user
+        }
+        return render(request, 'about_me.html', context)
 
 def login(request):
     request.session.flush()
@@ -71,8 +75,6 @@ def login(request):
         # if 'errors' in request.session.keys():
         #     del request.session['errors']
         return redirect('/user_experience')
-    
-
 
 def logout(request):
     request.session.flush()
@@ -82,3 +84,10 @@ def child(request):
     context = {
     }
     return render(request,"child.html",context)
+
+def about_me(request, user_id):
+    user = User.objects.get(id=user_id)
+    user.about = request.POST['about_me']
+    user.save()
+
+    return redirect('/user_experience/user_info_page')

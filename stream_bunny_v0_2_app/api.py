@@ -31,15 +31,20 @@ def get_stream(imdb_id):
 
     response = requests.request("GET", url, headers=headers, params=querystring)
 
-    # print(response.json()["streamingInfo"])
-    ret1 = response.json()["streamingInfo"]
+    noRec = []
+    if "no records are found" in response.text: #if response.text == "message" then skip everything else & return an empty array
+        return noRec
+    ret1 = response.json()["streamingInfo"] #this is the place to check response
     stream_arr = []
+    # stream_arr = {}
     for stream, value in ret1.items():
         stream_arr.append(
             {
                 'stream':stream,
                 'stream_link':value['us']['link']
                 })
+        # stream_arr = {'stream':stream, 'stream_link':value['us']['link']}
+    print(stream_arr)
     return stream_arr
 
 #/get/basic

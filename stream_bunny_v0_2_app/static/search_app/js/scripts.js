@@ -56,63 +56,66 @@ function movie_search(){
                                     for (stream of response.streams) {
                                         streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo'></a>`
                                     }
-                                    if (('director' in response) && !(response.streaming_on == undefined )) {
-
-                                        console.log(response.streaming_on);  
-
-                                        movie_details.innerHTML=''
+                                    for (stream of response.streams) {
+                                        if (stream.stream) {
+                                            streams+=`<a href='${stream.stream_link}'><img src='/static/images/${stream.stream}.png' class='stream-logo'></a>`
+                                        }
+                                    }
+                                    // console.log(('director' in response) && (response.streaming_on == undefined))
+                                    movie_details.innerHTML = ''
+                                    if ('title' in response) {
+                                        movie_details.innerHTML += `<h2 class="yellow_text"><i>${response.title}</i></h2>`
+                                    } else {
+                                        movie_details.innerHTML += `<h3></h3>`
+                                    }
+                                    if ('year' in response) {
+                                        movie_details.innerHTML += `<h4>${response.year}</h4>`
+                                    } else {
+                                        movie_details.innerHTML += `<h4></h4>`
+                                    }
+                                    if ('poster_link' in response) {
+                                        movie_details.innerHTML += `<img src="${response.poster_link}" class="movie-img" alt="movie poster">`
+                                    } else {
+                                        movie_details.innerHTML += `<img src="/static/images/noposter.png" class="movie-img" alt="no poster">`
+                                    }
+                                    if (response.genres) {
+                                        if (response.genres.length === 1) {
+                                            movie_details.innerHTML += `<p class="mb-1"><i>${response.genres[0]}</i></p>`
+                                        } else if (response.genres.length === 2) {
+                                            movie_details.innerHTML += `<p class="mb-1"><i>${response.genres[0]}, ${response.genres[1]}</i></p>`
+                                        } else if (response.genres.length >= 3) {
+                                            movie_details.innerHTML += `<p class="mb-1"><i>${response.genres[0]}, ${response.genres[1]}, ${response.genres[2]}</i></p>`
+                                        }
+                                    } else {
+                                        movie_details.innerHTML += `<p></p>`
+                                    }
+                                    if ('director' in response) {
+                                        movie_details.innerHTML += `<h5>Dir. ${response.director}</h5>`
+                                    } else {
+                                        movie_details.innerHTML += `<h3></h3>`
+                                    }
+                                    if ('plot' in response) {
+                                        movie_details.innerHTML += `<p class="mb-1">${response.plot}</p>`
+                                    } else {
+                                        movie_details.innerHTML += `<p></p>`
+                                    }
+                                    if ('rating' in response) {
+                                        movie_details.innerHTML += `<p class="mb-1">IMDB Rating: ${response.rating}</p>`
+                                    } else {
+                                        movie_details.innerHTML += `<p></p>`
+                                    }
+                                    movie_details.innerHTML += `<h5>Streaming on: </h5>`
+                                    if (streams) {
                                         movie_details.innerHTML += `
-                                        <h3>${response.title}</h3>
-                                        <h5>${response.year}</h5>
-                                        <img src="${response.poster_link}" class="movie-img">
-                                        <h5>${response.director}</h5>
-                                        <p>${response.plot}</p>
-                                        <h5>Streaming at: </h5>
                                         <div class='stream-div d-inline-flex justify-content-center'>
                                         ${streams}
                                         </div>`
-                                    } else if (('director' in response) && (response.streaming_on == undefined )) {
-                                            movie_details.innerHTML=''
-                                            movie_details.innerHTML += `
-                                            <h3>${response.title}</h3>
-                                            <h5>${response.year}</h5>
-                                            <img src="${response.poster_link}" class="movie-img">
-                                            <h5>${response.director}</h5>
-                                            <p>${response.plot}</p>
-                                            <h5>Streaming at: </h5>
-                                            <h6 class='text-redify'><i>Title not found streaming anywhere!</i></h6>
-                                            <div class='stream-div d-inline-flex justify-content-center'>
-                                            <img class="tyr-big" src="/static/images/tyrion.gif" alt="tyrion-no-stream">
-                                            </div>`
-                                        
-                                    } else if ( !('director' in response) && (response.streaming_on == undefined ) ) {
-                                        movie_details.innerHTML=''
+                                    } else {
                                         movie_details.innerHTML += `
-                                        <h3>${response.title}</h3>
-                                        <h5>${response.year}</h5>
-                                        <img src="${response.poster_link}" class="movie-img">
-                                        <h5>${response.director}</h5>
-                                        <p>${response.plot}</p>
-                                        <h5>Streaming at: </h5>
-                                        <h6 class='text-redify'><i>Title not found streaming anywhere!</i></h6>
-                                        <div class='stream-div d-inline-flex justify-content-center'>
+                                        <div class='stream-div no-stream-result'>
+                                        <h5 class='text-redify'>Title not found streaming anywhere!</h5>
                                         <img class="tyr-big" src="/static/images/tyrion.gif" alt="tyrion-no-stream">
                                         </div>`
-    
-                                    } else {
-
-                                        console.log(response);  
-
-                                        movie_details.innerHTML=''
-                                        movie_details.innerHTML += `
-                                        <h3>${response.title}</h3>
-                                        <h5>${response.year}</h5>
-                                        <img src="${response.poster_link}" class="movie-img">
-                                        <p>${response.plot}</p>
-                                        <h5>Streaming at: </h5>
-                                        <div class='stream-div d-inline-flex justify-content-center'>
-                                        ${streams}
-                                        </div>`                                   
                                     }
                                     // console.log(response.streaming_on.stream_link, response.streaming_on.stream)
                                     movie_details.classList.remove('not-visible')

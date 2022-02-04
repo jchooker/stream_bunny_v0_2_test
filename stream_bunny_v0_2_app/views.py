@@ -53,8 +53,8 @@ def get_movie(request, movie_id):
     }
     if streaming_on:
         movie_dict['streams'] = streaming_on
-    # else:
-    #     movie_dict['streams'] = "sorry"
+    else:
+        movie_dict['streams'] = []
 
     if movie_detail.get('cover url'):
         movie_dict['poster_link'] = movie_detail.get('cover url')
@@ -63,6 +63,8 @@ def get_movie(request, movie_id):
         movie_dict['plot'] = plot_snipped                           #the end of the plot data that database often attaches
     if movie_detail.get('rating'):
         movie_dict['rating'] = movie_detail.get('rating')
+    if movie_detail.get('genres'):
+        movie_dict['genres'] = movie_detail.get('genres')
     if movie_detail.get('director'):
         director_list = ''
         for i in range(len(movie_detail.get('director'))):

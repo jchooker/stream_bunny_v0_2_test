@@ -1,6 +1,8 @@
 def get_movie_info(curr_movies):
     movie_array = []
     for movie in curr_movies:
+        if 'video game' in movie.get('kind'):
+            continue
         if movie.get('votes'):
             testIfCast = movie.get('cast')
             cast_subarray = []

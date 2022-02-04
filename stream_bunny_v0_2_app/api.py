@@ -1,20 +1,5 @@
 import requests
 
-# url = "https://streaming-availability.p.rapidapi.com/search/basic"
-
-# querystring = {"country":"us","service":"netflix","type":"movie","genre":"18","page":"1","output_language":"en","language":"en"}
-
-# headers = {
-#     'x-rapidapi-host': "streaming-availability.p.rapidapi.com",
-#     }
-
-# response = requests.request("GET", url, headers=headers, params=querystring)
-
-# print(response.json)
-
-# {'hbo': {'us': {'link': 
-# 'https://play.hbomax.com/page/urn:hbo:page:GXeOM3Q7qcZuAuwEAADwo:type:feature', 'added': 1609567234, 'leaving': 0}}}
-
 def get_stream(imdb_id):
 
     url = "https://streaming-availability.p.rapidapi.com/get/basic"

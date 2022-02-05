@@ -28,17 +28,29 @@ function movie_search(){
                     console.log(data)
                     results_box.innerHTML=''
                     data.forEach(movie=> {
-                    results_box.innerHTML += `
-                        <a href="" class="item" movie-id="${movie.id}"> 
-                        <div class="row mt-2 mb-2 blue-hov">
-                            <div class="col-10">
-                                <h5>${movie.title}&nbsp;(${movie.year})</h5>
-                                <p class="dd-cast"><a href="like/${movie.id}" class="inline-block like-movie">Like &#x1F44D;</a>&emsp;&emsp;&emsp;&emsp;${movie.cast[0]}, ${movie.cast[1]}, ${movie.cast[2]}</p>
-                                
+                        final_cast = '';
+                            if (movie.cast.length === 0) {
+                                final_cast = final_cast;
+                            } else if (movie.cast.length === 1) {
+                                final_cast = movie.cast;
+                            } else {
+                                for (i = 0; i < movie.cast.length - 1; i++) {
+                                    final_cast += (movie.cast[i] + ', ');
+                                }
+                                final_cast += movie.cast[movie.cast.length - 1];
+                            }
+                        results_box.innerHTML += `
+                            <a href="" class="item" movie-id="${movie.id}"> 
+                            <div class="row mt-2 mb-2 blue-hov">
+                                <div class="col-10">
+                                    <h5>${movie.title}&nbsp;(${movie.year})</h5>
+                                    <div class="dd-cast"><a href="like/${movie.id}">Like</a>
+                                        <span id="cast-parent">${final_cast}</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </a>`
-                    })
+                        </a>`
+                        })
                     $(".blue-hov").hover(function(){
                         $(this).addClass("mouse-on1")
                     }, function(){

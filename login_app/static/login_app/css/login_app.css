@@ -29,7 +29,7 @@ label {
     font-size:x-large;
     text-align: left;
 }
-input {
+.login {
     width:59%;
     padding:10px;
     /* margin-bottom:20px; */
@@ -37,7 +37,7 @@ input {
     border:brown  2px solid;
     border-radius: 10px;
 }
-input[type="submit"] {
+.submit {
     text-align: center;
     width:fit-content;
     font-size:x-large;

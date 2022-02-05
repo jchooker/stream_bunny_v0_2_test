@@ -42,11 +42,10 @@ function movie_search(){
                         results_box.innerHTML += `
                             <a href="" class="item" movie-id="${movie.id}"> 
                             <div class="row mt-2 mb-2 blue-hov">
-                                <div class="col-10">
+                                <div id="outer-adj" class="col-10">
                                     <h5>${movie.title}&nbsp;(${movie.year})</h5>
                                     <div class="dd-cast"><a href="like/${movie.id}">Like</a>
-                                        <span id="space">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
-                                        <span id="cast-parent">${final_cast}</span>
+                                        <span id="cast-here">${final_cast}</span>
                                     </div>
                                 </div>
                             </div>

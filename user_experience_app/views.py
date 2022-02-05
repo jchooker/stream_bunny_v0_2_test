@@ -66,10 +66,12 @@ def user_favorite_movies_page(request,member_id):
     
 def user_info_page_edit(request):
     user = User.objects.get(id=request.session['user_id'])
-
+    birthday=user.birthday.strftime("%Y-%m-%d")
+    print(birthday)
+    print(type(birthday))
     context = {
-        "name_of_page" : "user_info_page_edit",
         "user" : user,
+        "birthday" : birthday
     }
     return render(request,'user_info_page_edit.html',context)
     

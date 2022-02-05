@@ -20,7 +20,7 @@
         {% endif %}
         <p class="pt-2"><span id="like_count_{{movie.id}}" >{{movie.liked_by.count}}</span> likes - liked by: </p>
         {#<p></p>#}
-        {% for user in movie.liked_by.all %} <p class='my-1'><a class="ms-4 fst-italic text-decoration-none text-warning" href="xxxxxxxx"> {{user.full_name}} </a></p> {% endfor %}
+        {% for user in movie.liked_by.all %} <p class='my-1'><a class="ms-4 fst-italic text-decoration-none text-warning" href="/user_experience/user_favorite_movies_page/{{user.id}}"> {{user.full_name}} </a></p> {% endfor %}
 
         <div id="stream-locs"></div>
     </div>
@@ -51,7 +51,7 @@
                     <form class="form-comment ms-5 p-2" movie_id="{{movie.id}}" msg_id="{{msg.id}}" method="POST">
                         {% csrf_token %}
                         <div class="w-100 text-end" >
-                            <textarea rows="2" class="w-50  p-2 mb-2" name="comment" placeholder="Write a response"> </textarea>
+                            <textarea placeholder="Write a response" rows="2" class="w-100  p-2 mb-2" name="comment"> </textarea>
                         </div>
                         <div class="w-100 text-end" >
                             <button type="submit" class="btn btn-sm btn-light btn-outline-secondary">Respond</button>

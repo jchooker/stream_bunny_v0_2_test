@@ -42,10 +42,12 @@ function movie_search(){
                         results_box.innerHTML += `
                             <a href="" class="item" movie-id="${movie.id}"> 
                             <div class="row mt-2 mb-2 blue-hov">
-                                <div id="outer-adj" class="col-10">
+                                <div class="col-10 results-box-item">
                                     <h5>${movie.title}&nbsp;(${movie.year})</h5>
-                                    <div class="dd-cast"><a href="like/${movie.id}">Like</a>
-                                        <span id="cast-here">${final_cast}</span>
+                                    <div class="dd-cast">
+                                        <a href="like/${movie.id}" class="like">Like &#x1F44D;</a>
+                                        <span id="space">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
+                                        <span id="cast-parent">${final_cast}</span>
                                     </div>
                                 </div>
                             </div>
@@ -77,7 +79,7 @@ function movie_search(){
                                         movie_details.innerHTML += `<h3></h3>`
                                     }
                                     if ('year' in response) {
-                                        movie_details.innerHTML += `<h4>${response.year}</h4>`
+                                        movie_details.innerHTML += `<h4 class="movie_details_year">${response.year}</h4>`
                                     } else {
                                         movie_details.innerHTML += `<h4></h4>`
                                     }

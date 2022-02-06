@@ -11,15 +11,15 @@
                     </tr>
                     <tr>
                         <td class="px-5">Last Name: </td>
-                        <td class="pe-5"> <input class="bg-transparent text-danger" type="text" name="xxxxx" value = "{{user.last_name}}"></td>
+                        <td class="pe-5"> <input class="bg-transparent text-danger" type="text" name="last_name" value = "{{user.last_name}}"></td>
                     </tr>
                     <tr>
                         <td class="px-5">Email: </td>
-                        <td class="pe-5"> <input class="bg-transparent text-danger" type="text" name="xxxxx" value = "{{user.email}}"></td>
+                        <td class="pe-5"> <input class="bg-transparent text-danger" type="text" name="email" value = "{{user.email}}"></td>
                     </tr>
                     <tr>
                         <td class="px-5">Birthday: </td>
-                        <td class="pe-5"> <input class="bg-transparent text-danger" type="date" name="xxxxx" value = "{{birthday}}"></td>
+                        <td class="pe-5"> <input class="bg-transparent text-danger" type="date" name="birthday" value = "{{birthday}}"></td>
                     </tr>
                     <tr>
                         <td class="px-5">Joined on: </td>
@@ -35,7 +35,7 @@
                         <td class="fs-5 w-25">About you: </td>
                     </tr>
                     <td class="pe-5"> 
-                        <textarea class="bg-transparent text-danger w-100 mh-100" name="xxxxx" rows="9">{{user.about}} </textarea> 
+                        <textarea class="bg-transparent text-danger w-100 mh-100" name="about_me" rows="9">{{user.about}} </textarea> 
                     </td>
                 </tbody>
             </table>
@@ -43,5 +43,5 @@
     </div>
 </div>
 <div class="px-5 text-end">
-    <a id="edit_user_info" class="btn btn-outline-light bg-success my-4 mx-5 px-5xxx" href="/user_experience/user_info_page_edit">Save changes</a>                       
+    <a id="user_info_edit_save" class="btn btn-outline-light bg-success my-4 mx-5" href="/user_experience/user_info_edit_save">Save changes</a>                       
 </div>

@@ -23,7 +23,6 @@ def success(request):
         return redirect('/')
 
 def register(request):
-    # request.session.flush()
     errors = User.objects.registerValidator(request.POST)
     request.session['errors'] = errors
     first_name = request.POST['first_name']
@@ -44,16 +43,9 @@ def register(request):
         return redirect('/login')
     else:
         request.session.flush()
-        # confirm_password = request.POST['confirm_password']
         password_bcrypt = bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode()
         user = User.objects.create(first_name=first_name,last_name=last_name,birthday=birthday,email=email,password=password_bcrypt)
         request.session['user_id'] = user.id
-        # if 'errors' in request.session.keys():
-        #     del request.session['errors']
-        # return redirect('/user_experience')
-        context = {
-            'user':user
-        }
         return redirect('/login/about_me')
 
 def login(request):

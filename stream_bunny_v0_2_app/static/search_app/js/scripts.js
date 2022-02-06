@@ -46,7 +46,7 @@ function movie_search(){
                                     <h5>${movie.title}&nbsp;(${movie.year})</h5>
                                     <div class="dd-cast">
                                         <a href="like/${movie.id}" class="like">Like &#x1F44D;</a>
-                                        <span id="space">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
+                                        <span id="space">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</span>
                                         <span id="cast-parent">${final_cast}</span>
                                     </div>
                                 </div>

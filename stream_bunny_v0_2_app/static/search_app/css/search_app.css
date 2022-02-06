@@ -12,10 +12,23 @@
 .search:focus {
     background-color: silver;
 }
+
+#wrapper1 {
+    /* outline : 4px solid #fad711; */
+    width: 100%;
+    min-height: 2000px;
+    /* max-height: 500px;  */
+    /* margin: 20px auto; */
+    /* border: 1px solid black; */
+    /* border-radius: 8px; */
+    background-color: #1e90ff;
+}
+
 #middle-part1 {
     width: 100%;
     min-height: 300px;
     display: flex;
+    padding: 30px;
     /* justify-content: center; */
     align-items: flex-start; 
     /* not need flex? */
@@ -53,7 +66,7 @@
 
 #movie_titles {
     width: 100%;
-    margin-left: 20px;
+    /* margin-left: 20px; */
 }
 
 #right-panel {
@@ -84,7 +97,7 @@
     outline : 3px solid #fad711;
     width: 35%;
     /* width: 800px; */
-    margin: 42px 0px 0px 20px;
+    margin: 42px 0px 0px 0px;
     border: 1px solid #9a9a9a;
     border-radius: 7px;
     padding: 9px;
@@ -153,6 +166,10 @@ a{
     color: black;
 }
 
+#outer-adj {
+    width: 100%;
+}
+
 .stream-div {
     width: 350px;
     display: flex;
@@ -160,15 +177,35 @@ a{
 
 .dd-cast {
     /* text-align: end; */
+    /* white-space: normal;
     width: 120%;
     /* width: 540px; */
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
-    display: inline-block;
+    overflow: hidden; */
+    display: flex;
+    /* justify-content: space-between;
+    width: 700px; */
+    /* word-wrap: break-word; */
+    /* display: inline-block;
     margin-left: 6px;
     text-decoration: none;
-    color: #434343;
+    color: #434343; */
+}
+
+.cast-here {
+    display: flex;
+    align-self: flex-end;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.like-movie{
+    text-decoration: none;
+    font-weight: bolder;
+    color: rgb(101, 167, 116);
+    justify-self: flex-start;
 }
 
 .tyr-big {

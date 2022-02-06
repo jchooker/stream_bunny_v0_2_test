@@ -21,7 +21,7 @@ body {
     background-color: #1e90ff;
 }
 .carousel-inner{
-    width: 500px;
+    /* width: 500px; */
 }
 /* comment out "carousel-inner" class to return to Michael's previous carousel set-up  */
 .w-13 {

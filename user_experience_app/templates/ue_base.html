@@ -61,48 +61,99 @@
                     </div>
                 </div>
             </div> {% endcomment %}
-            <div id="carousel" class="container">
-                <div id="carouselExampleSlidesOnly" class="carousel slide display-d carousel-fade" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/1.png' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/2.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/3.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/4.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/5.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/6.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/7.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="170" width="280px">
-                        </div>
-                        <div class="carousel-item" data-bs-interval="4000">
-                            <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="170" width="280px">
+
+            {#<div class="w-100 bg-secondary h-auto" height="170">#}
+
+                <div id="carousel" class="container d-flex justify-content-center h-auto">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide display-d carousel-fade" data-bs-ride="carousel" height="170">
+                        <div class="carousel-inner" height="170">
+                            <div class="carousel-item active" data-bs-interval="8000" height="170">
+                                <div class="d-flex" height="170">
+                                    <img src="{% static 'user_experience_app/images/1.png' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/2.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/3.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/4.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/5.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/6.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/7.jpeg' %}" alt="..." height="146" width="240">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="8000">
+                                <div class="d-flex">
+                                    <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/13.jpeg' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/14.webp' %}" alt="..." height="146" width="240">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="146" width="240">
+                                </div>
+                            </div>
+
+{% comment %} {# The sections below will be used when we have more images to fill them #}
+                            <div class="carousel-item" data-bs-interval="8000">
+                                <div class="d-flex">
+                                    <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="8000">
+                                <div class="d-flex">
+                                    <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="8000">
+                                <div class="d-flex">
+                                    <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="8000">
+                                <div class="d-flex">
+                                    <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                </div>
+                            </div>
+                            <div class="carousel-item" data-bs-interval="8000">
+                                <div class="d-flex">
+                                    <img src="{% static 'user_experience_app/images/8.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/9.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/10.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/11.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                    <img src="{% static 'user_experience_app/images/12.jpeg' %}" alt="..." height="153" width="252px">
+                                </div>
+                            </div>
+{% endcomment %} {# The sections above will be used when we have more images to fill them #}
+
                         </div>
                     </div>
                 </div>
-            </div>
+
+            {#</div>#}
+
 
         {% endblock carousel %}
             

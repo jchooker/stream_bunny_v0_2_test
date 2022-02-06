@@ -64,17 +64,6 @@ def user_favorite_movies_page(request,member_id):
     }
     return render(request,'user_favorite_movies_page.html',context)
     
-def user_info_page_edit(request):
-    user = User.objects.get(id=request.session['user_id'])
-    birthday=user.birthday.strftime("%Y-%m-%d")
-    print(birthday)
-    print(type(birthday))
-    context = {
-        "user" : user,
-        "birthday" : birthday
-    }
-    return render(request,'user_info_page_edit.html',context)
-    
 def user_info_page(request):
     user = User.objects.get(id=request.session['user_id'])
     # my_likes = user.liked_by.all()
@@ -86,6 +75,62 @@ def user_info_page(request):
     }
     return render(request,'user_info_page.html',context)
     
+def user_info_page_edit(request):
+    user = User.objects.get(id=request.session['user_id'])
+    birthday=user.birthday.strftime("%Y-%m-%d")
+    print(birthday)
+    print(type(birthday))
+    context = {
+        "user" : user,
+        "birthday" : birthday
+    }
+    return render(request,'user_info_page_edit.html',context)
+
+def user_info_edit_save(request):
+    errors = User.objects.registerValidator(request.POST)
+    request.session['errors'] = errors
+    # first_name = request.POST['first_name']
+    # last_name = request.POST['last_name']
+    # birthday = request.POST['birthday']
+    # email = request.POST['email']
+    # password = request.POST['password']
+    # confirm_password = request.POST['confirm_password']
+    # request.session['first_name'] = first_name
+    # request.session['last_name'] = last_name
+    # request.session['birthday'] = birthday
+    # request.session['email'] = email
+    # request.session['password'] = password
+    # request.session['confirm_password'] = confirm_password
+    if len(errors) > 0:
+        # for key, value in errors.items():
+        #     messages.error(request,value)
+        return redirect('/xxxxxxxxxxxxx')
+    else:
+        # request.session.flush()
+        # password_bcrypt = bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode()
+        # request.session['user_id'] = user.id
+        user = User.objects.get(id=request.session['user_id'])
+        user.first_name = request.POST['first_name']
+        user.last_name = request.POST['last_name']
+        user.birthday = request.POST['birthday']
+        user.email = request.POST['email']
+        user.about_me = request.POST['about_me']
+        # user.confirm_password = request.POST['confirm_password']
+        user.save()
+        context = {
+
+        }
+    return render(request,'user_info_update_successful.html',context)
+        # return redirect('/user_experience/user_info_update_successful')
+
+def user_info_update_successful(request):
+    context ={
+        
+    }
+
+    return render(request,'user_info_update_successful.html',context)
+
+
 def comment(request):
     user = User.objects.get(id=request.session['user_id'])
 

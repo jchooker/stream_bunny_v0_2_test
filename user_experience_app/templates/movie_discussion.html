@@ -31,17 +31,16 @@
         <div id="discussion-container">
             {% if discussions %}
 
-
                 {% for msg in discussions %}
                     <a class="text-decoration-none text-warning" href= "/user_experience/user_favorite_movies_page/{{msg.user.id}}" >{{msg.user.full_name}}</a>
-                        <span> - {{msg.created_at}}</span>
+                        <span class="created-at"> - {{msg.created_at}}</span>
                     <p class="p-2"> {{msg.content}} </p>
 
                     <div class="comment-container-{{msg.id}}">
                         {% for comment in msg.comments.all %}
                             <div class="ms-5">
                                 <a class="text-decoration-none text-warning" href= "/user_experience/user_favorite_movies_page/{{comment.user.id}}" class="member-profile-link">{{comment.user.full_name}}</a>
-                                <span> - {{comment.created_at}}</span>
+                                <span class="created-at"> - {{comment.created_at}}</span>
                                 <p>{{comment.comment}}</p>
                             </div>
                         {% endfor %}
@@ -72,7 +71,7 @@
             {% csrf_token %}
                 <textarea class="w-100 p-2"  name="discuss" rows="6" placeholder="Write your thoughts here"> </textarea>
                 <div class="w-100 d-flex justify-content-end">
-                    <button type="submit" class="btn btn-sm btn-light btn-outline-secondary my-4"   value="Post message" id="submit-post-btn" class="wall-btn">Share</button>
+                    <button type="submit" class="btn btn-sm btn-light btn-outline-secondary my-4"   value="Post message" id="submit-post-btn">Share</button>
                 </div>
         </form>
     </div>

@@ -20,6 +20,10 @@ body {
     /* border-radius: 8px; */
     background-color: #1e90ff;
 }
+.carousel-inner{
+    width: 500px;
+}
+/* comment out "carousel-inner" class to return to Michael's previous carousel set-up  */
 .w-13 {
     width: 13%;
 }
@@ -38,4 +42,8 @@ body {
 }
 .text-xxl {
     font-size: 70px;
+}
+
+.created-at{
+    color: rgb(208, 208, 208);
 }

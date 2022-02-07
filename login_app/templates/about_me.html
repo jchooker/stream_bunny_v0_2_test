@@ -1,5 +1,6 @@
 {% extends "ue_base.html"%}
 {% load static %}
+{% block fave %}<link rel="shortcut icon" type="image/png" href="{% static 'login_app/images/favicon.png' %}"/>{% endblock %}
 {% block page_content %} 
 <h1 class="mb-5 yellow_text fst-italic text-center" >Welcome to Stream Bunny, {{user.full_name}}!</h1>
 <div class="d-inline-block w-25 h_400px"></div>

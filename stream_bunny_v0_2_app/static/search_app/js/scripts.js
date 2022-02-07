@@ -117,7 +117,7 @@ function movie_search(){
                                     movie_details.innerHTML += `<h5>Streaming on: </h5>`
                                     if (streams) {
                                         movie_details.innerHTML += `
-                                        <div class='stream-div d-inline-flex justify-content-center'>
+                                        <div class='stream-div d-inline-flex align-items-center'>
                                         ${streams}
                                         </div>`
                                     } else {

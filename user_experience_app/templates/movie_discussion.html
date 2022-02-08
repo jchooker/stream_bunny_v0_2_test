@@ -45,7 +45,7 @@
                             </div>
                         {% endfor %}
                     </div>
-
+                    {{user.images.image}}
 
                     <form class="form-comment ms-5 p-2" movie_id="{{movie.id}}" msg_id="{{msg.id}}" method="POST">
                         {% csrf_token %}

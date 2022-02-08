@@ -10,5 +10,7 @@ urlpatterns = [
     path('child',views.child),
     path('about_me', views.about_me_page),
     path('about_me_save', views.about_me_save),
+    path('about_me_test', views.about_me_test_page),
+    path('about_me_test_save', views.about_me_test_save),
 ]
 

@@ -58,3 +58,10 @@ class User(models.Model):
 
     def full_name(self):
         return "{} {}".format(self.first_name, self.last_name)
+
+class Image(models.Model):
+    name = models.CharField(max_length=255)
+    image = models.ImageField(upload_to='images/')
+    user = models.ForeignKey(User, related_name="images", on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

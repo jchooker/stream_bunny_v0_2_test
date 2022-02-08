@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from .models import *
-from login_app.models import User
+from login_app.models import User, Image
 from django.contrib import messages
 # from stream_bunny_v0_2_app.models import Movie
 from stream_bunny_v0_2_app.models import Movie, Discussion, Comment
@@ -233,3 +233,20 @@ def comment(request,movie_id,msg_id):
 def delete_discussions(request):
     Discussion.objects.all().delete()
     return redirect('/user_experience')
+
+
+
+# TEST
+
+# it works 
+def user_info_page_test(request):
+    user = User.objects.get(id=request.session['user_id'])
+    # my_likes = user.liked_by.all()
+
+    context = {
+        "name_of_page" : "user_info_page",
+        "user" : user,
+        "movies" : user.liked_by.all(),
+        'images':Image.objects.filter(user=user.id),
+    }
+    return render(request,'user_info_page_test.html',context)

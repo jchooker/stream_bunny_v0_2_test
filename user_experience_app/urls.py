@@ -20,4 +20,8 @@ urlpatterns = [
     # path('comment/<int:movie_id>/<int:discussion_id>',views.comment), 
     path('comment/<int:movie_id>/<int:msg_id>',views.comment), 
     path('delete_discussions',views.delete_discussions), 
+
+# TEST
+    path('user_info_page_test',views.user_info_page_test), 
+
 ]

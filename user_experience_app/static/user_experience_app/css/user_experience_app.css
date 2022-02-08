@@ -47,3 +47,25 @@ body {
 .created-at{
     color: rgb(208, 208, 208);
 }
+.relative{
+    position:relative;
+}
+#user-info-panel{
+    margin-left: 20px;
+}
+#user-info-image{
+    border-radius: 100%;
+    width: 200px;
+    margin-left: 176px;
+}
+#user-info-name{
+    text-align: center;
+}
+#user-info-about{
+    margin-left: 40px;
+    width: 790px;
+}
+#info-right-panel{
+    /* padding: 40px; */
+    /* outline: 2px solid red; */
+}

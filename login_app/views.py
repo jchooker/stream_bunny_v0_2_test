@@ -46,7 +46,8 @@ def register(request):
         password_bcrypt = bcrypt.hashpw(password.encode(),bcrypt.gensalt()).decode()
         user = User.objects.create(first_name=first_name,last_name=last_name,birthday=birthday,email=email,password=password_bcrypt)
         request.session['user_id'] = user.id
-        return redirect('/login/about_me')
+        # return redirect('/login/about_me')
+        return redirect('/login/about_me_test')
 
 def login(request):
     request.session.flush()
@@ -97,4 +98,30 @@ def about_me_save(request):
     user = User.objects.get(id=user_id)
     user.about = request.POST['about_me']
     user.save()
+    return redirect("/user_experience")
+
+def about_me_test_page(request):
+    user_id = request.session['user_id']
+    user = User.objects.get(id=user_id)
+    context = {
+        "user" : user,
+    }
+    return render(request,"about_me_test.html",context)
+
+def about_me_test_save(request):
+    user_id = request.session['user_id']
+    user = User.objects.get(id=user_id)
+
+    if "image" in request.FILES:
+        Image.objects.create(
+            image=request.FILES['image'],
+            name=request.FILES['image'].name,
+            user=user
+            )
+        if "about_me" in request.POST:
+            user.about = request.POST['about_me']
+            user.save()
+    else:
+        user.about = request.POST['about_me']
+        user.save()
     return redirect("/user_experience")

@@ -39,7 +39,8 @@ def search(request, query):
         return HttpResponse(json.dumps(movie_array[:8]), content_type="application/json")
     else:
         return HttpResponse(
-            json.dumps({"no movie": "Can't find movie"}),
+            # json.dumps({"no movie": "Can't find movie"}),
+            json.dumps([]),
             content_type="application/json"
         )
 

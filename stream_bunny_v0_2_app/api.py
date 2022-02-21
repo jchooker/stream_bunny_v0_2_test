@@ -8,10 +8,10 @@ def get_stream(imdb_id):
 
     headers = {
         'x-rapidapi-host': "streaming-availability.p.rapidapi.com",
-        # 'x-rapidapi-key': "2b0bb807b2msh8f81f82877e9118p17629cjsn1b5858449268" #matthew api key
-        # 'x-rapidapi-key': "9e6924077bmsh537baf971b723ddp1165e9jsn8c35b01cf3eb" #joseph api key
-        'x-rapidapi-key': "2b0bb807b2msh8f81f82877e9118p17629cjsn1b5858449268", #michael
-        # 'x-rapidapi-key': "c86b5de4cbmsh1b9d84199107c8dp14c37bjsnaad1fa143ed3" #joseph's wife, emily
+        # 'x-rapidapi-key': "2b0bb807b2msh8f81f82877e9118p17629cjsn1b5858449268", #matthew api key
+        # 'x-rapidapi-key': "9e6924077bmsh537baf971b723ddp1165e9jsn8c35b01cf3eb", #joseph api key
+        # 'x-rapidapi-key': "2b0bb807b2msh8f81f82877e9118p17629cjsn1b5858449268", #michael
+        'x-rapidapi-key': "c86b5de4cbmsh1b9d84199107c8dp14c37bjsnaad1fa143ed3" #joseph's wife, emily
         }
 
     response = requests.request("GET", url, headers=headers, params=querystring)
